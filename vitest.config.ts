@@ -9,7 +9,7 @@ export default {
 		checker({
 			eslint: {
 				dev: { logLevel: ['error'] },
-				lintCommand: 'eslint --cache src/**/*.{ts,cts,mts,tsx}',
+				lintCommand: 'eslint --cache src/**/*.{ts,mts,tsx}',
 				useFlatConfig: true,
 			},
 			terminal: true,
@@ -19,7 +19,7 @@ export default {
 	test: {
 		coverage: {
 			exclude: [
-				'**/*.{d,config,mock,fixture,interface}.?(c|m)[jt]s?(x)',
+				'**/*.{d,config,mock,fixture,interface,stories}.?(c|m)[jt]s?(x)',
 				'**/{index,main}.?(c|m)[jt]s?(x)',
 				'**/__{tests,mocks,fixtures,msw}__/**/*',
 			],

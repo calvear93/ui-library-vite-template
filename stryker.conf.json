@@ -12,7 +12,7 @@
 	"reporters": ["clear-text", "progress", "dots", "html", "json"],
 	"ignorePatterns": [
 		"dist",
-		"**/*.{d,config,mock,fixture,interface}.{ts,cts,mts}",
+		"**/*.{d,config,mock,fixture,interface}.{ts,mts}",
 		"**/{index,main}.{ts,cts,mts}",
 		"**/__{tests,mocks,fixtures}__"
 	],

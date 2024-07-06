@@ -5,6 +5,7 @@ import { useState } from 'react';
  *
  * @param initialValue - initial counter value
  */
+export default {};
 export const useCounter = (initialValue = 0) => {
 	const [counter, setCounter] = useState(initialValue);
 

@@ -12,10 +12,11 @@ import { compilerOptions } from './tsconfig.json';
 
 const SRC = {
 	EXCLUDE: [
-		'**/*.{mock,fixture,spec,test}.?(c|m)[jt]s?(x)',
+		'**/*.{mock,fixture,spec,test}.?(m)[jt]s?(x)',
+		'**/*.{stories}.?(m)[jt]s',
 		'**/__{tests,mocks,fixtures}__/**/*',
 	],
-	INCLUDE: ['src/**/*.?(c|m)[jt]s?(x)'],
+	INCLUDE: ['src/**/*.?(m)[jt]s?(x)'],
 };
 
 const { entryfiles, libExports } = await getEntryfiles();
@@ -32,6 +33,7 @@ export default {
 		rollupOptions: {
 			external: [
 				...Object.keys(packageJson.dependencies),
+				...Object.keys(packageJson.devDependencies),
 				'react/jsx-runtime',
 			],
 			output: {
@@ -53,7 +55,7 @@ export default {
 		checker({
 			enableBuild: true,
 			eslint: {
-				lintCommand: 'eslint --cache src/**/*.{ts,cts,mts,tsx}',
+				lintCommand: 'eslint --cache src/**/*.{ts,mts,tsx}',
 				useFlatConfig: true,
 			},
 			stylelint: {

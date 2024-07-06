@@ -3,6 +3,7 @@ import { act } from 'react';
 import { describe, expect, test } from 'vitest';
 import { useCounter } from './use-counter.hook.ts';
 
+export default {};
 describe(useCounter, () => {
 	const renderUserCounter = renderHookFactory(useCounter);
 

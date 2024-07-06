@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
+export default {};
 type Fn = (...args: any[]) => any;
 
 export const renderHookFactory =

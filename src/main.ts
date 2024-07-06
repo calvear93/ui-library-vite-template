@@ -2,6 +2,7 @@ import 'uno.css';
 import './main.scss';
 
 // components
+export default {};
 export * from './components/SampleButton.tsx';
 
 // hooks

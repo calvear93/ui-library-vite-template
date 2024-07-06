@@ -6,17 +6,19 @@ import react from 'eslint-plugin-react';
 import redos from 'eslint-plugin-redos';
 import regexp from 'eslint-plugin-regexp';
 import sonarjs from 'eslint-plugin-sonarjs';
+import storybook from 'eslint-plugin-storybook';
 import testingLibrary from 'eslint-plugin-testing-library';
 import unicorn from 'eslint-plugin-unicorn';
 import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import typescript from 'typescript-eslint';
 
-const SRC_GLOB = '**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}';
-const TYPESCRIPT_GLOB = '**/*.{ts,cts,mts,tsx}';
-const REACT_GLOB = 'src/**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}';
-const TEST_GLOB = 'src/**/*.{spec,test}.{js,mjs,cjs,jsx,ts,cts,mts,tsx}';
-const CODE_STYLE_GLOB = '**/*.{js,mjs,cjs,jsx,ts,cts,mts,tsx,json}';
+const SRC_GLOB = '**/*.{js,mjs,jsx,ts,mts,tsx}';
+const TYPESCRIPT_GLOB = '**/*.{ts,mts,tsx}';
+const REACT_GLOB = 'src/**/*.{js,mjs,jsx,ts,mts,tsx}';
+const TEST_GLOB = 'src/**/*.{spec,test}.{js,mjs,jsx,ts,mts,tsx}';
+const STORYBOOK_GLOB = '**/*.stories.{ts,mts,tsx,js,jsx,mjs}';
+const CODE_STYLE_GLOB = '**/*.{js,mjs,jsx,ts,mts,tsx,json}';
 
 const ERROR = 'error';
 const WARN = 'warn';
@@ -789,6 +791,27 @@ export default [
 			'vitest/prefer-to-have-length': WARN,
 			'vitest/prefer-todo': WARN,
 			'vitest/valid-title': OFF,
+		},
+	},
+	// #endregion
+
+	// #region storybook
+	{
+		files: [STORYBOOK_GLOB],
+		plugins: { storybook },
+		rules: {
+			'storybook/await-interactions': ERROR,
+			'storybook/context-in-play-function': WARN,
+			// 'storybook/csf-component': WARN,
+			'storybook/default-exports': ERROR,
+			// 'storybook/hierarchy-separator': ERROR,
+			'storybook/no-redundant-story-name': WARN,
+			'storybook/no-stories-of': ERROR,
+			// 'storybook/no-title-property-in-meta': ERROR,
+			// 'storybook/no-uninstalled-addons': ERROR,
+			// 'storybook/prefer-pascal-case': WARN,
+			// 'storybook/story-exports': WARN,
+			'storybook/use-storybook-testing-library': WARN,
 		},
 	},
 	// #endregion

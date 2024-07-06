@@ -23,6 +23,9 @@ vitest.config.ts.*
 __reports__
 coverage
 
+# Storybook
+*storybook.log
+
 # npm cache directory
 .npm
 

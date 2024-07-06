@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { SampleInput } from './SampleInput.tsx';
 
+export default { component: SampleInput };
 describe(SampleInput, () => {
 	// tests
 	test('renders input with label and "type" from props', () => {
