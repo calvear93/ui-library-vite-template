@@ -1,0 +1,6 @@
+.button {
+	display: flex;
+	overflow-wrap: break-word;
+
+	@apply bg-cool-gray-600 text-light-400 shadow-md shadow-gray-600;
+}

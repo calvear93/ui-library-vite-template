@@ -1,0 +1,36 @@
+html,
+body,
+form,
+fieldset,
+table,
+tr,
+input,
+button,
+select,
+textarea,
+optgroup,
+option,
+td,
+img {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+body {
+	margin: 0;
+	line-height: 1.5;
+	letter-spacing: 0.025em;
+	color-scheme: light dark;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+	box-sizing: border-box;
+	width: 100dvw;
+	height: 100dvh;
+}
