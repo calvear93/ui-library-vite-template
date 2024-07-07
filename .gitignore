@@ -19,13 +19,13 @@ vitest.config.ts.*
 .stryker-tmp
 
 # test reports and coverage directory
-/tests
 .reports
 __reports__
 coverage
 
 # Storybook
 *storybook.log
+storybook-static
 
 # npm cache directory
 .npm

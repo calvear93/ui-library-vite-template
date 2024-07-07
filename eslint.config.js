@@ -36,6 +36,7 @@ export default [
 			'.rollup.cache/**/*',
 			'vite.config.ts.*',
 			'vitest.config.ts.*',
+			'storybook-static/**/*',
 		],
 	},
 
