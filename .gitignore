@@ -12,6 +12,7 @@ node_modules
 .rollup.cache
 vite.config.ts.*
 vitest.config.ts.*
+.vite
 .swc
 
 # Stryker cache
