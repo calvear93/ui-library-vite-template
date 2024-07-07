@@ -2,8 +2,8 @@ import 'uno.css';
 import './main.scss';
 
 // components
-export default {};
 export * from './components/SampleButton.tsx';
+export * from './components/SampleInput.tsx';
 
 // hooks
 export * from './hooks/use-counter.hook.ts';

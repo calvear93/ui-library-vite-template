@@ -9,7 +9,7 @@ export const SampleInput = ({
 	return (
 		<div className='lib-sample-input'>
 			<label htmlFor={id}>
-				<div className='i-mdi-arrow-forward text-orange-400' />
+				<div className='i-mdi-arrow-forward text-green-400' />
 				{label}
 			</label>
 			<input id={id} type={type} {...props} />

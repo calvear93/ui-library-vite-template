@@ -5,12 +5,17 @@
 	label {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: left;
+		font-size: 1rem;
 
-		@apply mb-2 text-sm text-gray-900 font-medium dark:text-white;
+		@apply mb-2 text-gray-900 font-medium dark:text-white;
+
+		div {
+			margin-right: 0.6rem;
+		}
 	}
 
 	input {
-		@apply g-gray-50 border border-gray-300 rounded-lg p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 bg-red;
+		@apply g-gray-50 border-solid border-gray-300 rounded-lg p-2.5 text-sm text-gray-900 hover:border-green-500 hover:ring-green-500 transition-all;
 	}
 }

@@ -1,11 +1,18 @@
 import type { Preview } from '@storybook/react';
+import { PreviewLayout } from './PreviewLayout.tsx';
 import '../src/main.scss';
 import 'virtual:uno.css';
 
 export default {
+	decorators: [
+		(Story) => (
+			<PreviewLayout>
+				<Story />
+			</PreviewLayout>
+		),
+	],
 	parameters: {
 		backgrounds: {
-			default: 'light',
 			values: [
 				{
 					name: 'light',

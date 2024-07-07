@@ -1,14 +1,8 @@
+/* eslint-disable perfectionist/sort-objects */
 import type { StorybookConfig } from '@storybook/react-vite';
 
 export default {
-	addons: [
-		'@storybook/addon-onboarding',
-		'@storybook/addon-links',
-		'@storybook/addon-essentials',
-		'@storybook/addon-interactions',
-		'@storybook/addon-a11y',
-		'@whitespace/storybook-addon-html',
-	],
+	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	core: {
 		builder: '@storybook/builder-vite',
 		disableTelemetry: true,
@@ -19,9 +13,16 @@ export default {
 			strictMode: true,
 		},
 	},
-	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	typescript: {
 		check: true,
 		reactDocgen: 'react-docgen-typescript',
 	},
+	addons: [
+		'@storybook/addon-onboarding',
+		'@storybook/addon-links',
+		'@storybook/addon-essentials',
+		'@storybook/addon-interactions',
+		'@storybook/addon-a11y',
+		'@whitespace/storybook-addon-html',
+	],
 } satisfies StorybookConfig;

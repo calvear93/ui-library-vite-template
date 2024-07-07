@@ -34,6 +34,7 @@
 		"@storybook/react": "^8.1.11",
 		"@storybook/react-vite": "^8.1.11",
 		"@storybook/test": "^8.1.11",
+		"@storybook/types": "^8.1.11",
 		"@stryker-mutator/core": "8.2.6",
 		"@stryker-mutator/typescript-checker": "8.2.6",
 		"@stryker-mutator/vitest-runner": "8.2.6",

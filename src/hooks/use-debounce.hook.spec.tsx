@@ -2,7 +2,6 @@ import { renderHookFactory, useFakeTimers } from '#testing';
 import { describe, expect, test, vi } from 'vitest';
 import { useDebounceState } from './use-debounce.hook.ts';
 
-export default {};
 describe(useDebounceState, () => {
 	const renderDebounceState = renderHookFactory(useDebounceState);
 

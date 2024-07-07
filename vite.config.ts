@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { copyFile, writeFile } from 'node:fs/promises';
 import { join, parse } from 'node:path';
 import react from '@vitejs/plugin-react-swc';
 import { globStream } from 'glob';
@@ -12,9 +12,8 @@ import { compilerOptions } from './tsconfig.json';
 
 const SRC = {
 	EXCLUDE: [
-		'**/*.{mock,fixture,spec,test}.?(m)[jt]s?(x)',
-		'**/*.{stories}.?(m)[jt]s',
-		'**/__{tests,mocks,fixtures}__/**/*',
+		'**/*.{mock,fixture,spec,test,stories}.?(m)[jt]s?(x)',
+		'**/__{tests,mocks,fixtures,stories}__/**/*',
 	],
 	INCLUDE: ['src/**/*.?(m)[jt]s?(x)'],
 };
@@ -74,6 +73,7 @@ export default {
 			logLevel: 'silent',
 		}),
 		pkgJson(),
+		docs(),
 	],
 } satisfies UserConfigExport;
 
@@ -85,21 +85,33 @@ function pkgJson(): PluginOption {
 		name: 'package-json-gen',
 		writeBundle: async () => {
 			const pkg = {
+				version: packageJson.version,
+				name: packageJson.name,
 				description: packageJson.description,
-				engines: packageJson.engines,
-				exports: libExports,
 				main: 'main.js',
 				module: 'main.js',
-				name: packageJson.name,
-				peerDependencies: packageJson.dependencies,
-				private: true,
-				sideEffects: ['**/*.css'],
-				type: packageJson.type,
 				types: 'main.d.ts',
-				version: packageJson.version,
+				sideEffects: ['**/*.css'],
+				exports: libExports,
+				type: packageJson.type,
+				peerDependencies: packageJson.dependencies,
+				engines: packageJson.engines,
 			};
 
 			await writeFile('dist/package.json', JSON.stringify(pkg, null, 4));
+		},
+	};
+}
+
+/**
+ * Copies docs in output.
+ */
+function docs(): PluginOption {
+	return {
+		name: 'docs',
+		writeBundle: async () => {
+			await copyFile('README.md', 'dist/README.md');
+			await copyFile('LICENSE.md', 'dist/LICENSE.md');
 		},
 	};
 }
@@ -111,22 +123,36 @@ function pkgJson(): PluginOption {
  */
 async function getEntryfiles() {
 	const entryfiles: Record<string, string> = {};
-	const libExports: Record<string, { import: string; types: string }> = {};
+	const libExports: Record<
+		string,
+		{ import: string; style?: string; types?: string }
+	> = {};
 
 	for await (const buffer of globStream(SRC.INCLUDE, {
 		ignore: SRC.EXCLUDE,
 	})) {
 		const path = buffer.toString();
-		const { dir, name } = parse(path);
+		const { dir, ext, name } = parse(path);
 		// removes src root from path
 		const key = join(dir.replace(/src[/\\]?/iu, ''), name);
+		const exportKey = name === 'main' ? '.' : `./${name}`;
 
 		entryfiles[key] = path;
-		libExports[name === 'main' ? '.' : `./${name}`] = {
+
+		libExports[exportKey] = {
 			import: `./${key}.js`,
 			types: `./${key}.d.ts`,
 		};
+		// per component stylesheet
+		if (ext === '.tsx') {
+			libExports[exportKey].style = `./assets\\${name}.css`;
+		}
 	}
+
+	// main stylesheet
+	libExports['./styles.css'] = {
+		import: './assets\\main.css',
+	};
 
 	return { entryfiles, libExports };
 }
