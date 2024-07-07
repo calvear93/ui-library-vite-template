@@ -2,17 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { SampleButton } from './SampleButton.tsx';
 
-const meta = {
+// metadata
+type MetaData = Meta<typeof SampleButton>;
+type Story = StoryObj<typeof meta>;
+
+const meta: MetaData = {
 	args: {
 		text: 'Default',
 	},
 	component: SampleButton,
 	tags: ['autodocs'],
-	title: 'Examples/SampleButton',
-} satisfies Meta<typeof SampleButton>;
+};
+export default meta;
 
-type Story = StoryObj<typeof meta>;
-
+// stories
 export const WithMyText: Story = {
 	args: {
 		text: 'My Text',
@@ -33,5 +36,3 @@ export const OnHover: Story = {
 		await userEvent.hover(button);
 	},
 };
-
-export default meta;

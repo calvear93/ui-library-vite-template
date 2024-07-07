@@ -25,6 +25,7 @@
 	"devDependencies": {
 		"@faker-js/faker": "8.4.1",
 		"@iconify-json/mdi": "1.1.67",
+		"@storybook/addon-a11y": "^8.1.11",
 		"@storybook/addon-essentials": "^8.1.11",
 		"@storybook/addon-interactions": "^8.1.11",
 		"@storybook/addon-links": "^8.1.11",
@@ -45,6 +46,7 @@
 		"@unocss/eslint-config": "0.61.2",
 		"@vitejs/plugin-react-swc": "3.7.0",
 		"@vitest/coverage-v8": "1.6.0",
+		"@whitespace/storybook-addon-html": "^6.1.1",
 		"eslint": "9.6.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-plugin-jsx-a11y": "6.9.0",
@@ -64,6 +66,7 @@
 		"jsdom": "24.1.0",
 		"postcss": "8.4.39",
 		"prettier": "3.3.2",
+		"react-syntax-highlighter": "^15.5.0",
 		"sass": "1.77.6",
 		"storybook": "^8.1.11",
 		"stylelint": "16.6.1",
