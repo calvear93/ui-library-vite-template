@@ -55,7 +55,7 @@
 		"**/.stryker-tmp": true,
 		"**/.svn": true,
 		"**/.swc": true,
-		"**/.wireit": true,
+		"**/.vite": true,
 		"**/desktop.ini": true,
 		"**/node_modules": true,
 		"**/obj": true
@@ -72,8 +72,8 @@
 		"**/.rollup.cache": true,
 		"**/.stryker-tmp": true,
 		"**/.swc": true,
+		"**/.vite": true,
 		"**/.vscode": true,
-		"**/.wireit": true,
 		"**/build": true,
 		"**/coverage": true,
 		"**/dist": true,
@@ -95,9 +95,5 @@
 	"typescript.suggest.autoImports": true,
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"typescript.validate.enable": true,
-	"workbench.editor.customLabels.patterns": {
-		"env/*.env.json": "🔑 ${filename}.${extname}",
-		"env/appsettings.json": "⚙️ ${filename}.${extname}"
-	},
 	"yaml.format.singleQuote": true
 }
