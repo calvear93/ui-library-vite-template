@@ -19,20 +19,23 @@ export default {
 	test: {
 		coverage: {
 			exclude: [
-				'**/*.{d,config,mock,fixture,interface,stories}.?(c|m)[jt]s?(x)',
-				'**/{index,main}.?(c|m)[jt]s?(x)',
+				'**/*.{d,config,mock,fixture,interface,stories}.?(m)[jt]s?(x)',
+				'**/{index,main}.?(m)[jt]s?(x)',
 				'**/__{tests,mocks,fixtures,msw}__/**/*',
 			],
-			include: ['src/**/*.?(c|m)[jt]s?(x)'],
+			include: ['src/**/*.?(m)[jt]s?(x)'],
 			reporter: ['text', 'text-summary', 'lcov', 'cobertura', 'json'],
 			reportsDirectory: `${TEST_DIR}/coverage`,
 		},
 		environment: 'jsdom',
-		include: ['src/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
+		include: ['src/**/*.{spec,test}.?(m)[jt]s?(x)'],
 		outputFile: {
 			junit: `${TEST_DIR}/junit.xml`,
 		},
 		reporters: ['junit', 'verbose'],
-		setupFiles: ['@testing-library/react/dont-cleanup-after-each'],
+		setupFiles: [
+			'@testing-library/react/dont-cleanup-after-each',
+			'@testing-library/jest-dom/vitest',
+		],
 	},
 } satisfies UserConfigExport;

@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import { PreviewLayout } from './PreviewLayout.tsx';
+import { PreviewLayout } from './utils/PreviewLayout.tsx';
 import '../src/main.scss';
 import 'virtual:uno.css';
 

@@ -12,9 +12,12 @@
 	"reporters": ["clear-text", "progress", "dots", "html", "json"],
 	"ignorePatterns": [
 		"dist",
-		"**/*.{d,config,mock,fixture,interface}.{ts,mts}",
-		"**/{index,main}.{ts,cts,mts}",
-		"**/__{tests,mocks,fixtures}__"
+		".vscode",
+		".storybook",
+		"**/node_modules/**",
+		"**/*.{d,config,mock,fixture,interface,stories}.?(m)[jt]s?(x)",
+		"**/{index,main}.?(m)[jt]s?(x)",
+		"**/__{tests,mocks,fixtures}__/**/*"
 	],
 	"tsconfigFile": "tsconfig.json",
 	"checkers": ["typescript"],

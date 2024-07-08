@@ -12,7 +12,12 @@
 
 		"jsx": "react-jsx",
 		"lib": ["dom", "es2023"],
-		"types": ["vite/client", "@storybook/types"],
+		"types": [
+			"vite/client",
+			"@testing-library/jest-dom",
+			"@storybook/types",
+			"@storybook/theming"
+		],
 
 		"incremental": true,
 		"sourceMap": true,

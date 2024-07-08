@@ -1,0 +1,7 @@
+.layout {
+	margin: 1rem;
+
+	* {
+		font-family: 'Quicksand', sans-serif !important;
+	}
+}

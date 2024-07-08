@@ -1,5 +1,7 @@
+import styles from './PreviewLayout.module.css';
+
 export const PreviewLayout = ({ children }: PreviewLayoutProps) => {
-	return <div style={{ margin: '1rem' }}>{children}</div>;
+	return <div className={styles.layout}>{children}</div>;
 };
 
 export interface PreviewLayoutProps extends React.PropsWithChildren {}
