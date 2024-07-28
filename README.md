@@ -26,12 +26,12 @@
 -   Install [NodeJS](https://nodejs.org/es/).
 -   Install [PNPM](https://pnpm.io/installation)
 -   Execute `pnpm install` command.
--   Run either `pnpm start` or `pnpm test` commands.
+-   Run either `pnpm dev` or `pnpm test` commands.
 
 ## 💼 **Usage**
 
 Project has automatic artifact generation using `pnpm build`, but you should add prepublish and publish commands for any package repository you want.
 
--   **Development**: `pnpm start` opens a dev server using [Storybook](https://storybook.js.org/).
+-   **Development**: `pnpm dev` opens a dev server using [Storybook](https://storybook.js.org/).
 -   **Build**: `pnpm build` bundles the library in 'dist' folder for publish, with automatic entryfiles, css injection and type definition generation [see vite.config.ts](vite.config.ts)
 -   **Test**: `pnpm test` executes test suites using [Vitest](https://vitest.dev/).
