@@ -21,7 +21,7 @@ export default {
 			exclude: [
 				'**/*.{d,config,mock,fixture,interface,stories}.?(m)[jt]s?(x)',
 				'**/{index,main}.?(m)[jt]s?(x)',
-				'**/__{tests,mocks,fixtures,msw}__/**/*',
+				'**/__{tests,mocks,fixtures}__/**/*',
 			],
 			include: ['src/**/*.?(m)[jt]s?(x)'],
 			reporter: ['text', 'text-summary', 'lcov', 'cobertura', 'json'],
@@ -29,10 +29,7 @@ export default {
 		},
 		environment: 'jsdom',
 		include: ['src/**/*.{spec,test}.?(m)[jt]s?(x)'],
-		outputFile: {
-			junit: `${TEST_DIR}/junit.xml`,
-		},
-		reporters: ['junit', 'verbose'],
+		reporters: ['verbose'],
 		setupFiles: [
 			'@testing-library/react/dont-cleanup-after-each',
 			'@testing-library/jest-dom/vitest',

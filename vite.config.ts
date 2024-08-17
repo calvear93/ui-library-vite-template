@@ -85,17 +85,17 @@ function pkgJson(): PluginOption {
 		name: 'package-json-gen',
 		writeBundle: async () => {
 			const pkg = {
-				version: packageJson.version,
-				name: packageJson.name,
 				description: packageJson.description,
+				engines: packageJson.engines,
+				exports: libExports,
 				main: 'main.js',
 				module: 'main.js',
-				types: 'main.d.ts',
-				sideEffects: ['**/*.css'],
-				exports: libExports,
-				type: packageJson.type,
+				name: packageJson.name,
 				peerDependencies: packageJson.dependencies,
-				engines: packageJson.engines,
+				sideEffects: ['**/*.css'],
+				type: packageJson.type,
+				types: 'main.d.ts',
+				version: packageJson.version,
 			};
 
 			await writeFile('dist/package.json', JSON.stringify(pkg, null, 4));

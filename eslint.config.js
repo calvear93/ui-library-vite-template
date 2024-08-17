@@ -1,4 +1,5 @@
 import unocss from '@unocss/eslint-config/flat';
+import testingLibraryJestDom from 'eslint-plugin-jest-dom';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import perfectionist from 'eslint-plugin-perfectionist';
 import prettier from 'eslint-plugin-prettier/recommended';
@@ -13,18 +14,18 @@ import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import typescript from 'typescript-eslint';
 
-const SRC_GLOB = '**/*.{js,mjs,jsx,ts,mts,tsx}';
-const TYPESCRIPT_GLOB = '**/*.{ts,mts,tsx}';
-const REACT_GLOB = 'src/**/*.{js,mjs,jsx,ts,mts,tsx}';
-const TEST_GLOB = 'src/**/*.{spec,test}.{js,mjs,jsx,ts,mts,tsx}';
+const SRC_GLOB = '**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}';
+const TYPESCRIPT_GLOB = '**/*.{ts,cts,mts,tsx}';
+const REACT_GLOB = 'src/**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}';
+const TEST_GLOB = 'src/**/*.{spec,test}.{js,mjs,cjs,jsx,ts,cts,mts,tsx}';
+const CODE_STYLE_GLOB = '**/*.{js,mjs,cjs,jsx,ts,cts,mts,tsx,json}';
 const STORYBOOK_GLOB = '**/*.stories.{ts,mts,tsx,js,jsx,mjs}';
-const CODE_STYLE_GLOB = '**/*.{js,mjs,jsx,ts,mts,tsx,json}';
 
 const ERROR = 'error';
 const WARN = 'warn';
 const OFF = 'off';
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import('eslint').Linter.Config[]} */
 export default [
 	{
 		ignores: [
@@ -33,6 +34,7 @@ export default [
 			'**/node_modules/**/*',
 			'.reports/**/*',
 			'.vscode/**/*',
+			'.wireit/**/*',
 			'.rollup.cache/**/*',
 			'vite.config.ts.*',
 			'vitest.config.ts.*',
@@ -108,6 +110,7 @@ export default [
 			'no-misleading-character-class': ERROR,
 			'no-mixed-spaces-and-tabs': [WARN, 'smart-tabs'],
 			'no-new-native-nonconstructor': ERROR,
+			'no-new-symbol': OFF,
 			'no-new-wrappers': WARN,
 			'no-nonoctal-decimal-escape': ERROR,
 			'no-obj-calls': ERROR,
@@ -140,12 +143,16 @@ export default [
 			'no-useless-computed-key': WARN,
 			'no-useless-escape': ERROR,
 			'no-useless-return': ERROR,
+			'no-var': ERROR,
 			'no-with': ERROR,
 			'object-shorthand': WARN,
 			'prefer-arrow-callback': WARN,
+			'prefer-const': WARN,
 			'prefer-exponentiation-operator': WARN,
 			'prefer-promise-reject-errors': WARN,
 			'prefer-regex-literals': WARN,
+			'prefer-rest-params': WARN,
+			'prefer-spread': WARN,
 			'prefer-template': WARN,
 			'quote-props': [WARN, 'as-needed'],
 			quotes: [
@@ -181,12 +188,6 @@ export default [
 		rules: {
 			...typescript.configs.strict[1].rules,
 			...typescript.configs.strict[2].rules,
-			'@typescript-eslint/ban-types': [
-				ERROR,
-				{
-					types: { Function: false },
-				},
-			],
 			'@typescript-eslint/consistent-type-imports': [
 				WARN,
 				{
@@ -202,11 +203,13 @@ export default [
 				ERROR,
 				{ allowSingleExtends: true },
 			],
+			'@typescript-eslint/no-empty-object-type': OFF,
 			'@typescript-eslint/no-explicit-any': OFF,
 			'@typescript-eslint/no-extraneous-class': OFF,
 			'@typescript-eslint/no-floating-promises': [
 				WARN,
 				{
+					checkThenables: true,
 					ignoreIIFE: true,
 					ignoreVoid: true,
 				},
@@ -217,6 +220,7 @@ export default [
 			],
 			'@typescript-eslint/no-non-null-assertion': OFF,
 			'@typescript-eslint/no-redundant-type-constituents': ERROR,
+			'@typescript-eslint/no-unsafe-function-type': OFF,
 			'@typescript-eslint/no-unused-vars': [
 				WARN,
 				{
@@ -241,6 +245,7 @@ export default [
 					variables: true,
 				},
 			],
+			'@typescript-eslint/no-wrapper-object-types': WARN,
 			'@typescript-eslint/sort-type-constituents': [
 				WARN,
 				{
@@ -273,6 +278,7 @@ export default [
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
 				globals: {
+					...globals.serviceworker,
 					...globals.browser,
 					JSX: true,
 					React: true,
@@ -443,6 +449,7 @@ export default [
 			'unicorn/prefer-set-has': WARN,
 			'unicorn/prefer-set-size': WARN,
 			'unicorn/prefer-spread': WARN,
+			'unicorn/prefer-string-raw': OFF,
 			'unicorn/prefer-string-replace-all': WARN,
 			'unicorn/prefer-string-slice': WARN,
 			'unicorn/prefer-string-starts-ends-with': WARN,
@@ -467,14 +474,7 @@ export default [
 		files: [SRC_GLOB],
 		plugins: { perfectionist },
 		rules: {
-			'perfectionist/sort-array-includes': [
-				WARN,
-				{
-					ignoreCase: false,
-					order: 'asc',
-					type: 'natural',
-				},
-			],
+			'perfectionist/sort-array-includes': WARN,
 			'perfectionist/sort-classes': [
 				WARN,
 				{
@@ -482,6 +482,7 @@ export default [
 						'decorated-method',
 						'method',
 						'private-method',
+						'function-property',
 						'constructor',
 						'decorated-property',
 						'property',
@@ -495,19 +496,11 @@ export default [
 						'static-property',
 						'unknown',
 					],
-					ignoreCase: false,
-					order: 'asc',
-					type: 'natural',
+					partitionByComment: 'SECTION:**',
 				},
 			],
-			'perfectionist/sort-enums': [
-				WARN,
-				{ ignoreCase: false, order: 'asc', type: 'natural' },
-			],
-			'perfectionist/sort-exports': [
-				WARN,
-				{ ignoreCase: false, order: 'asc', type: 'natural' },
-			],
+			'perfectionist/sort-enums': [WARN, { sortByValue: true }],
+			'perfectionist/sort-exports': WARN,
 			'perfectionist/sort-imports': [
 				WARN,
 				{
@@ -526,11 +519,8 @@ export default [
 						'object',
 						'unknown',
 					],
-					ignoreCase: false,
 					internalPattern: ['#**/**'],
 					newlinesBetween: 'ignore',
-					order: 'asc',
-					type: 'natural',
 				},
 			],
 			'perfectionist/sort-interfaces': [
@@ -538,37 +528,17 @@ export default [
 				{
 					customGroups: { top: 'id' },
 					groups: ['top', 'unknown'],
-					ignoreCase: false,
-					order: 'asc',
-					partitionByNewLine: true,
-					type: 'natural',
 				},
 			],
-			'perfectionist/sort-jsx-props': [
-				WARN,
-				{ ignoreCase: false, order: 'asc', type: 'natural' },
-			],
-			'perfectionist/sort-maps': [
-				WARN,
-				{ ignoreCase: false, order: 'asc', type: 'natural' },
-			],
-			'perfectionist/sort-named-exports': [
-				WARN,
-				{ ignoreCase: false, order: 'asc', type: 'natural' },
-			],
-			'perfectionist/sort-named-imports': [
-				WARN,
-				{ ignoreCase: false, order: 'asc', type: 'natural' },
-			],
+			'perfectionist/sort-jsx-props': WARN,
+			'perfectionist/sort-maps': WARN,
+			'perfectionist/sort-named-exports': WARN,
+			'perfectionist/sort-named-imports': WARN,
 			'perfectionist/sort-object-types': [
 				WARN,
 				{
 					customGroups: { top: 'id' },
 					groups: ['top', 'unknown'],
-					ignoreCase: false,
-					order: 'asc',
-					partitionByNewLine: true,
-					type: 'natural',
 				},
 			],
 			'perfectionist/sort-objects': [
@@ -576,19 +546,18 @@ export default [
 				{
 					customGroups: { top: 'id' },
 					groups: ['top', 'unknown'],
-					ignoreCase: false,
-					ignorePattern: [
-						'features',
-						'examples',
-						'manualChunks',
-						'pkg',
-					],
-					order: 'asc',
+					ignorePattern: ['features', 'examples', 'manualChunks'],
 					partitionByComment: '#region**',
-					partitionByNewLine: true,
-					type: 'natural',
 				},
 			],
+		},
+		settings: {
+			perfectionist: {
+				ignoreCase: false,
+				order: 'asc',
+				partitionByNewLine: true,
+				type: 'natural',
+			},
 		},
 	},
 	// #endregion
@@ -695,6 +664,57 @@ export default [
 	},
 	// #endregion
 
+	// #region testing library
+	{
+		files: [TEST_GLOB],
+		plugins: {
+			'jest-dom': testingLibraryJestDom,
+			'testing-library': testingLibrary,
+		},
+		rules: {
+			'jest-dom/prefer-checked': WARN,
+			'jest-dom/prefer-empty': WARN,
+			'jest-dom/prefer-enabled-disabled': WARN,
+			'jest-dom/prefer-focus': WARN,
+			'jest-dom/prefer-in-document': WARN,
+			'jest-dom/prefer-required': WARN,
+			'jest-dom/prefer-to-have-attribute': WARN,
+			'jest-dom/prefer-to-have-class': WARN,
+			'jest-dom/prefer-to-have-style': WARN,
+			'jest-dom/prefer-to-have-text-content': WARN,
+			'jest-dom/prefer-to-have-value': WARN,
+			// 'testing-library/await-async-events': [
+			// 	ERROR,
+			// 	{ eventModule: 'userEvent' },
+			// ],
+			'testing-library/await-async-queries': ERROR,
+			'testing-library/await-async-utils': ERROR,
+			'testing-library/no-await-sync-events': [
+				ERROR,
+				{ eventModules: ['fire-event'] },
+			],
+			'testing-library/no-await-sync-queries': ERROR,
+			// 'testing-library/no-container': ERROR,
+			// 'testing-library/no-debugging-utils': WARN,
+			'testing-library/no-dom-import': [ERROR, 'react'],
+			'testing-library/no-global-regexp-flag-in-query': ERROR,
+			'testing-library/no-manual-cleanup': ERROR,
+			'testing-library/no-node-access': ERROR,
+			// 'testing-library/no-promise-in-fire-event': ERROR,
+			// 'testing-library/no-render-in-lifecycle': ERROR,
+			'testing-library/no-unnecessary-act': ERROR,
+			'testing-library/no-wait-for-multiple-assertions': ERROR,
+			'testing-library/no-wait-for-side-effects': ERROR,
+			'testing-library/no-wait-for-snapshot': ERROR,
+			'testing-library/prefer-find-by': ERROR,
+			'testing-library/prefer-presence-queries': ERROR,
+			'testing-library/prefer-query-by-disappearance': ERROR,
+			// 'testing-library/prefer-screen-queries': ERROR,
+			// 'testing-library/render-result-naming-convention': ERROR,
+		},
+	},
+	// #endregion
+
 	// #region prettier
 	{
 		files: [CODE_STYLE_GLOB],
@@ -718,31 +738,6 @@ export default [
 		rules: {
 			'unocss/order': WARN,
 			'unocss/order-attributify': WARN,
-		},
-	},
-	// #endregion
-
-	// #region testing library
-	{
-		files: [TEST_GLOB],
-		plugins: { 'testing-library': testingLibrary },
-		rules: {
-			'testing-library/no-await-sync-events': [
-				ERROR,
-				{ eventModules: ['fire-event'] },
-			],
-			'testing-library/no-await-sync-queries': ERROR,
-			'testing-library/no-dom-import': [ERROR, 'react'],
-			'testing-library/no-global-regexp-flag-in-query': ERROR,
-			'testing-library/no-manual-cleanup': ERROR,
-			'testing-library/no-node-access': ERROR,
-			'testing-library/no-unnecessary-act': ERROR,
-			'testing-library/no-wait-for-multiple-assertions': ERROR,
-			'testing-library/no-wait-for-side-effects': ERROR,
-			'testing-library/no-wait-for-snapshot': ERROR,
-			'testing-library/prefer-find-by': ERROR,
-			'testing-library/prefer-presence-queries': ERROR,
-			'testing-library/prefer-query-by-disappearance': ERROR,
 		},
 	},
 	// #endregion
