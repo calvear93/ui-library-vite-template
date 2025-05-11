@@ -3,11 +3,10 @@
 	"defaultSeverity": "warning",
 	"plugins": [
 		"stylelint-prettier",
-		"stylelint-scss",
 		"stylelint-order",
 		"stylelint-config-rational-order/plugin"
 	],
-	"extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+	"extends": ["stylelint-config-standard"],
 	"rules": {
 		"prettier/prettier": true,
 		"order/order": [
@@ -32,32 +31,6 @@
 				"empty-line-between-groups": false
 			}
 		],
-		"scss/at-rule-no-unknown": [
-			true,
-			{
-				"ignoreAtRules": [
-					"apply",
-					"each",
-					"function",
-					"if",
-					"include",
-					"layer",
-					"mixin",
-					"responsive",
-					"return",
-					"screen",
-					"tailwind",
-					"variants"
-				]
-			}
-		],
-		"scss/function-no-unknown": [
-			true,
-			{
-				"ignoreFunctions": ["map-get", "theme"]
-			}
-		],
-		"scss/no-global-function-names": null,
 		"alpha-value-notation": "number",
 		"at-rule-disallowed-list": ["debug"],
 		"at-rule-no-unknown": [

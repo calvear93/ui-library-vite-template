@@ -1,5 +1,5 @@
 {
-	"[html][json][jsonc][markdown][css][less][scss]": {
+	"[html][json][jsonc][markdown][css][less]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[javascript][typescript][javascriptreact][typescriptreact]": {
@@ -67,7 +67,6 @@
 	"javascript.autoClosingTags": true,
 	"javascript.preferences.quoteStyle": "single",
 	"prettier.useTabs": true,
-	"scss.lint.unknownAtRules": "ignore",
 	"search.exclude": {
 		"**/.rollup.cache": true,
 		"**/.stryker-tmp": true,
@@ -81,8 +80,8 @@
 		"**/pnpm-lock.yaml": true
 	},
 	"stylelint.packageManager": "pnpm",
-	"stylelint.snippet": ["css", "postcss", "scss", "sass"],
-	"stylelint.validate": ["css", "postcss", "scss", "sass"],
+	"stylelint.snippet": ["css"],
+	"stylelint.validate": ["css"],
 	"typescript.autoClosingTags": true,
 	"typescript.disableAutomaticTypeAcquisition": true,
 	"typescript.preferences.importModuleSpecifier": "shortest",

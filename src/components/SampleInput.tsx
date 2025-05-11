@@ -1,4 +1,4 @@
-import './SampleInput.scss';
+import './SampleInput.css';
 
 export const SampleInput = ({
 	id,

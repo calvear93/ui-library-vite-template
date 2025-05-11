@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 import { PreviewLayout } from './utils/PreviewLayout.tsx';
-import '../src/main.scss';
+import '../src/main.css';
 import 'virtual:uno.css';
 
 export default {

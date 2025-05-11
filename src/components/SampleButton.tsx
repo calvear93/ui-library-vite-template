@@ -1,4 +1,4 @@
-import styles from './SampleButton.module.scss';
+import styles from './SampleButton.module.css';
 
 export const SampleButton = ({ text }: SampleButtonProps) => {
 	return <button className={styles.button}>{text}</button>;

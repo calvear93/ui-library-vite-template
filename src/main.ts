@@ -1,5 +1,5 @@
 import 'uno.css';
-import './main.scss';
+import './main.css';
 
 // components
 export * from './components/SampleButton.tsx';

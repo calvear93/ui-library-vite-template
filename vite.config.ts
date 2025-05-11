@@ -60,7 +60,7 @@ export default {
 				useFlatConfig: true,
 			},
 			stylelint: {
-				lintCommand: 'stylelint --cache src/**/*.{css,scss,sass}',
+				lintCommand: 'stylelint --cache src/**/*.css',
 			},
 		}),
 		react(),
