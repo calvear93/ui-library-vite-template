@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
 export const useDebounceState = <S>(initialState?: S, interval = 200) => {
-	const timeout = useRef<NodeJS.Timeout>();
+	const timeout = useRef<NodeJS.Timeout>(null);
 	const [state, setState] = useState(initialState);
 
 	return [

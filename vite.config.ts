@@ -1,7 +1,7 @@
-import { copyFile, writeFile } from 'node:fs/promises';
-import { join, parse } from 'node:path';
 import react from '@vitejs/plugin-react-swc';
 import { globStream } from 'glob';
+import { copyFile, writeFile } from 'node:fs/promises';
+import { join, parse } from 'node:path';
 import css from 'unocss/vite';
 import { type PluginOption, type UserConfigExport } from 'vite';
 import { checker } from 'vite-plugin-checker';
@@ -11,25 +11,29 @@ import packageJson from './package.json';
 import { compilerOptions } from './tsconfig.json';
 
 const SRC = {
+	INCLUDE: ['src/**/*.?(m)[jt]s?(x)'],
 	EXCLUDE: [
 		'**/*.{mock,fixture,spec,test,stories}.?(m)[jt]s?(x)',
 		'**/__{tests,mocks,fixtures,stories}__/**/*',
 	],
-	INCLUDE: ['src/**/*.?(m)[jt]s?(x)'],
 };
 
 const { entryfiles, libExports } = await getEntryfiles();
 
 // https://vitejs.dev/config/
 export default {
+	clearScreen: false,
 	build: {
 		cssCodeSplit: true,
 		emptyOutDir: true,
+		sourcemap: compilerOptions.sourceMap,
+		target: compilerOptions.target,
 		lib: {
 			entry: entryfiles,
 			formats: ['es'],
 		},
 		rollupOptions: {
+			treeshake: true,
 			external: [
 				...Object.keys(packageJson.dependencies),
 				...Object.keys(packageJson.devDependencies),
@@ -44,15 +48,13 @@ export default {
 					'react-dom': 'ReactDOM',
 				},
 			},
-			treeshake: true,
 		},
-		sourcemap: compilerOptions.sourceMap,
-		target: compilerOptions.target,
 	},
-	clearScreen: false,
 	plugins: [
 		checker({
 			enableBuild: true,
+			terminal: true,
+			typescript: true,
 			eslint: {
 				lintCommand: 'eslint --cache src/**/*.{ts,mts,tsx}',
 				useFlatConfig: true,
@@ -60,8 +62,6 @@ export default {
 			stylelint: {
 				lintCommand: 'stylelint --cache src/**/*.{css,scss,sass}',
 			},
-			terminal: true,
-			typescript: true,
 		}),
 		react(),
 		css(),
@@ -85,6 +85,7 @@ function pkgJson(): PluginOption {
 		name: 'package-json-gen',
 		writeBundle: async () => {
 			const pkg = {
+				sideEffects: ['**/*.css'],
 				description: packageJson.description,
 				engines: packageJson.engines,
 				exports: libExports,
@@ -92,7 +93,6 @@ function pkgJson(): PluginOption {
 				module: 'main.js',
 				name: packageJson.name,
 				peerDependencies: packageJson.dependencies,
-				sideEffects: ['**/*.css'],
 				type: packageJson.type,
 				types: 'main.d.ts',
 				version: packageJson.version,
@@ -151,7 +151,7 @@ async function getEntryfiles() {
 
 	// main stylesheet
 	libExports['./styles.css'] = {
-		import: './assets\\main.css',
+		import: String.raw`./assets\main.css`,
 	};
 
 	return { entryfiles, libExports };

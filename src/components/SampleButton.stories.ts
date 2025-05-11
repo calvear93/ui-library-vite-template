@@ -7,11 +7,11 @@ type MetaData = Meta<typeof SampleButton>;
 type Story = StoryObj<typeof meta>;
 
 const meta: MetaData = {
+	component: SampleButton,
+	tags: ['autodocs'],
 	args: {
 		text: 'Default',
 	},
-	component: SampleButton,
-	tags: ['autodocs'],
 };
 export default meta;
 

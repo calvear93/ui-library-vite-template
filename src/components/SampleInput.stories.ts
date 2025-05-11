@@ -6,11 +6,11 @@ type MetaData = Meta<typeof SampleInput>;
 type Story = StoryObj<typeof meta>;
 
 const meta: MetaData = {
+	component: SampleInput,
+	tags: ['autodocs'],
 	args: {
 		type: 'text',
 	},
-	component: SampleInput,
-	tags: ['autodocs'],
 };
 
 // stories

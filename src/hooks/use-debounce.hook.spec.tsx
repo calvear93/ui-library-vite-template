@@ -1,3 +1,4 @@
+import { act } from '@testing-library/react';
 import { renderHookFactory, useFakeTimers } from '#testing';
 import { describe, expect, test, vi } from 'vitest';
 import { useDebounceState } from './use-debounce.hook.ts';
@@ -20,8 +21,10 @@ describe(useDebounceState, () => {
 		const newValue = 'new value';
 		const { get, set } = renderDebounceState(null, 1);
 
-		set(newValue);
-		await vi.advanceTimersToNextTimerAsync();
+		await act(() => {
+			set(newValue);
+			return vi.advanceTimersToNextTimerAsync();
+		});
 
 		expect(get()).toBe(newValue);
 	});
@@ -31,10 +34,12 @@ describe(useDebounceState, () => {
 		const lastValue = 'last value';
 		const { get, set } = renderDebounceState(null, 1);
 
-		set(firstValue);
+		await act(() => set(firstValue));
 		const settedFirstValue = get();
-		set(lastValue);
-		await vi.advanceTimersToNextTimerAsync();
+		await act(() => {
+			set(lastValue);
+			return vi.advanceTimersToNextTimerAsync();
+		});
 
 		expect(settedFirstValue).not.toBe(firstValue);
 		expect(get()).toBe(lastValue);

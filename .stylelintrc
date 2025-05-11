@@ -7,10 +7,7 @@
 		"stylelint-order",
 		"stylelint-config-rational-order/plugin"
 	],
-	"extends": [
-		"stylelint-config-standard",
-		"stylelint-config-standard-scss"
-	],
+	"extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
 	"rules": {
 		"prettier/prettier": true,
 		"order/order": [
@@ -80,6 +77,12 @@
 					"tailwind",
 					"variants"
 				]
+			}
+		],
+		"at-rule-no-deprecated": [
+			true,
+			{
+				"ignoreAtRules": ["apply"]
 			}
 		],
 		"block-no-empty": true,

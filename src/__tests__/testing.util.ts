@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, vi } from 'vitest';
 
 export const useFakeTimers = () => {
-	beforeAll(() => void vi.useFakeTimers());
+	beforeAll(() => vi.useFakeTimers());
 
-	afterAll(() => void vi.useRealTimers());
+	afterAll(() => vi.useRealTimers());
 };

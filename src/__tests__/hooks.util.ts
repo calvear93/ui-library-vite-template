@@ -8,9 +8,9 @@ export const renderHookFactory =
 		const { rerender, result, unmount } = renderHook(() => use(...args));
 
 		return {
-			get: () => result.current[0],
 			rerender,
 			set: result.current[1],
 			unmount,
+			get: () => result.current[0],
 		};
 	};

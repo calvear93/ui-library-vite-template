@@ -5,10 +5,10 @@ addons.setConfig({
 	theme: create({
 		base: 'light',
 
-		brandImage:
-			'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
 		brandTarget: '_self',
 		brandTitle: 'React UI Kit',
+		brandImage:
+			'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
 
 		colorPrimary: '#4169E1',
 		colorSecondary: '#4d6a96',
