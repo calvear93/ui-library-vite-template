@@ -44,7 +44,7 @@ the signature/params/returns, and render a small **live demo** that uses the hoo
 ```mdx
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Button } from '../components/atoms/button/index.ts';
-import { useCounter } from './use-counter.hook.ts';
+import { useCounter } from '../hooks/use-counter.hook.ts';
 
 <Meta title='Hooks/useCounter' />
 
@@ -58,7 +58,7 @@ export const Demo = () => {
 <Demo />
 ```
 
-See `src/hooks/*.mdx` for the live examples. The same pattern documents any utility or guideline page.
+See `src/docs/*.mdx` for the live examples. The same pattern documents any utility or guideline page.
 
 ## Config & branding
 
