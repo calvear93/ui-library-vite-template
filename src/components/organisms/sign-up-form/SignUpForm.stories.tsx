@@ -3,7 +3,7 @@ import { SignUpForm } from './SignUpForm.tsx';
 
 const meta = {
 	component: SignUpForm,
-	tags: ['autodocs'],
+	title: 'Organisms/SignUpForm',
 } satisfies Meta<typeof SignUpForm>;
 
 export default meta;

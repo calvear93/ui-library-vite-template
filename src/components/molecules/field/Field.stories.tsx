@@ -4,7 +4,7 @@ import { Field } from './Field.tsx';
 const meta = {
 	args: { label: 'Email', placeholder: 'you@example.com', type: 'email' },
 	component: Field,
-	tags: ['autodocs'],
+	title: 'Molecules/Field',
 } satisfies Meta<typeof Field>;
 
 export default meta;

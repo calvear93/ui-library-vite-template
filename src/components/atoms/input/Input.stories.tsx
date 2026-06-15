@@ -4,7 +4,7 @@ import { Input } from './Input.tsx';
 const meta = {
 	args: { placeholder: 'Type here…' },
 	component: Input,
-	tags: ['autodocs'],
+	title: 'Atoms/Input',
 } satisfies Meta<typeof Input>;
 
 export default meta;

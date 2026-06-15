@@ -1,15 +1,70 @@
+/* eslint-disable perfectionist/sort-objects */
 import { addons } from 'storybook/manager-api';
 import { create } from 'storybook/theming/create';
 
+// Base theme for the docs site — restyle these tokens to brand your own library.
+// The manager follows the OS light/dark preference at load.
+const shared = {
+	brandTitle: 'UI Kit',
+	brandImage: './logo.svg',
+	brandTarget: '_self',
+
+	colorPrimary: '#6366f1',
+	colorSecondary: '#7c3aed',
+
+	appBorderRadius: 10,
+	inputBorderRadius: 8,
+
+	fontBase: '"Quicksand", system-ui, sans-serif',
+	fontCode: 'ui-monospace, "Cascadia Code", "Fira Code", monospace',
+
+	barSelectedColor: '#6366f1',
+	barHoverColor: '#7c3aed',
+};
+
+const light = create({
+	...shared,
+	base: 'light',
+
+	appBg: '#f6f7fb',
+	appContentBg: '#ffffff',
+	appPreviewBg: '#ffffff',
+	appBorderColor: 'rgba(99, 102, 241, 0.16)',
+
+	textColor: '#1a1c1e',
+	textMutedColor: '#5b6470',
+
+	barBg: '#ffffff',
+	barTextColor: '#5b6470',
+
+	inputBg: '#ffffff',
+	inputBorder: 'rgba(99, 102, 241, 0.2)',
+	inputTextColor: '#1a1c1e',
+});
+
+const dark = create({
+	...shared,
+	base: 'dark',
+
+	appBg: '#16181a',
+	appContentBg: '#1e2124',
+	appPreviewBg: '#1e2124',
+	appBorderColor: 'rgba(255, 255, 255, 0.1)',
+
+	textColor: '#e6e8ea',
+	textMutedColor: '#9aa4b2',
+
+	barBg: '#1e2124',
+	barTextColor: '#9aa4b2',
+
+	inputBg: '#16181a',
+	inputBorder: 'rgba(255, 255, 255, 0.14)',
+	inputTextColor: '#e6e8ea',
+});
+
+const prefersDark =
+	globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches === true;
+
 addons.setConfig({
-	theme: create({
-		appBorderColor: 'rgba(99, 102, 241, 0.2)',
-		barTextColor: '#5b6470',
-		base: 'light',
-		brandImage: './logo.svg',
-		brandTarget: '_self',
-		brandTitle: 'UI Kit',
-		colorPrimary: '#6366f1',
-		colorSecondary: '#7c3aed',
-	}),
+	theme: prefersDark ? dark : light,
 });

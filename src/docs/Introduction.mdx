@@ -1,15 +1,59 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import logo from '../../assets/logo.svg';
 
 <Meta title="Introduction" />
 
+<div style={{ textAlign: 'center', padding: '1.5rem 0 0.5rem' }}>
+	<img src={logo} alt="UI Kit" width="210" />
+</div>
+
 # UI Kit
 
-A React component library template, built and bundled with Vite library mode.
+A React component library template — built and bundled with **Vite library mode**, organized
+with **Atomic Design**, and documented here in **Storybook**.
 
-- **Atomic Design** — components are organized as atoms → molecules → organisms.
-- **Vite 8 library mode** — tree-shakeable ESM output with per-component CSS and generated `.d.ts`.
-- **UnoCSS** — style with utilities via `@apply`; the used utilities compile into each component's CSS.
-- **Storybook 10** — every component ships a story with autodocs.
-- **Tested** — Vitest + React Testing Library, with Stryker mutation testing.
+This Storybook is the living catalog of the library: browse components by layer, read their
+autodocs, and try them live in the canvas. Swap the sample components for your own — the structure
+and tooling stay.
 
-Explore the components in the sidebar (Atoms, Molecules, Organisms), then replace them with your own.
+## Getting started
+
+```bash
+pnpm install
+pnpm dev        # this Storybook, on port 5001
+pnpm build      # bundle the library to dist/
+pnpm test       # Vitest + coverage
+```
+
+## Using the library
+
+```tsx
+import { Button, Field } from '<lib-name>';
+
+export const Example = () => (
+	<form>
+		<Field label="Email" type="email" />
+		<Button text="Get started" />
+	</form>
+);
+```
+
+Each component ships its own CSS (injected automatically) — there is no global stylesheet to import.
+
+## What's inside
+
+- **Atoms** — the smallest building blocks (`Button`, `Input`).
+- **Molecules** — atoms composed into a unit (`Field`).
+- **Organisms** — molecules + atoms forming a section (`SignUpForm`).
+- **Hooks** — reusable non-visual logic (`useCounter`, `useDebounceState`).
+
+Each component has an autodocs page (props, types, live controls); each hook has a usage page with
+a live demo. Use the sidebar to explore.
+
+## Make it yours
+
+1. Replace the sample components under `src/components/{atoms,molecules,organisms}/`.
+2. Style with UnoCSS utilities via `@apply` — keep it simple and easy to restyle.
+3. Rebrand this Storybook in `.storybook/manager.ts` (logo, colors, fonts).
+
+Conventions and the spec-driven workflow live in `AGENTS.md` and the `.ai/` folder.

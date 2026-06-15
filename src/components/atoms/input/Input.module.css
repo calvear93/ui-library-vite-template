@@ -9,3 +9,9 @@
 .input::placeholder {
 	@apply text-gray-400;
 }
+
+/* hide the browser's native password reveal / clear controls (e.g. Edge) */
+.input::-ms-reveal,
+.input::-ms-clear {
+	display: none;
+}

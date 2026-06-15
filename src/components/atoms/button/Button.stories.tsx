@@ -4,7 +4,7 @@ import { Button } from './Button.tsx';
 const meta = {
 	args: { text: 'Click me' },
 	component: Button,
-	tags: ['autodocs'],
+	title: 'Atoms/Button',
 } satisfies Meta<typeof Button>;
 
 export default meta;

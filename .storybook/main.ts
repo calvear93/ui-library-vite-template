@@ -28,5 +28,8 @@ export default {
 		'@whitespace/storybook-addon-html',
 	],
 	managerHead: (head) =>
-		`${head}<link rel="icon" type="image/svg+xml" href="./favicon.svg" />`,
+		`${head}
+		<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />`,
 } satisfies StorybookConfig;
