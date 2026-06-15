@@ -4,6 +4,10 @@ Scaffold a new component as a self-contained folder, placed in the right Atomic 
 Mirror the existing `atoms`/`molecules`/`organisms` exemplars. Apply the `atomic-design`,
 `component-api`, `storybook`, `accessibility`, and `vitest-tdd` skills.
 
+> In VSCode, the Template Tool scaffolds these from `.vscode/__templates__/` (`atom`, `molecule`,
+> `organism`, `hook`) — right-click the target folder → "New From Template". The steps below are
+> the manual equivalent.
+
 ## Steps
 
 1. Pick the layer by composition:
