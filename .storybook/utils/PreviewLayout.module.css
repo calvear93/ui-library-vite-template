@@ -5,15 +5,15 @@
 	align-items: flex-start;
 	min-height: 100vh;
 	padding: 1.5rem;
-	font-family: 'Quicksand', system-ui, sans-serif;
 	color: #1a1c1e;
+	font-family: 'Quicksand', system-ui, sans-serif;
 	background: #ffffff;
 	transition:
 		background 0.2s ease,
 		color 0.2s ease;
-}
 
-:global(.dark) .layout {
-	color: #e6e8ea;
-	background: #16181a;
+	:global(.dark) & {
+		color: #e6e8ea;
+		background: #16181a;
+	}
 }

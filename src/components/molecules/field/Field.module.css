@@ -4,8 +4,8 @@
 
 .label {
 	@apply text-sm font-medium text-gray-700;
-}
 
-:global(.dark) .label {
-	@apply text-gray-300;
+	:global(.dark) & {
+		@apply text-gray-300;
+	}
 }
