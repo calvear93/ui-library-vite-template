@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Button } from '../components/atoms/button/index.ts';
+import { use___HookName___ } from './use-___hook-name___.hook.ts';
+
+<Meta title="Hooks/use___HookName___" />
+
+# use___HookName___
+
+One line describing what `use___HookName___` does.
+
+```ts
+const [value, setValue] = use___HookName___(initialValue);
+```
+
+- **`initialValue`** (`number`, default `0`) — the starting value.
+- **Returns** a readonly `[value, setValue]` tuple.
+
+## Live demo
+
+export const Demo = () => {
+	const [value, setValue] = use___HookName___(0);
+	return <Button text={`Value: ${value}`} onClick={() => setValue(value + 1)} />;
+};
+
+<Demo />

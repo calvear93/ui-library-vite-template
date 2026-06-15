@@ -2,9 +2,14 @@
 
 Scaffold a reusable hook under `src/hooks/`.
 
+> In VSCode, the Template Tool scaffolds these from `.vscode/__templates__/hook/` — right-click
+> `src/hooks/` → "New From Template". The steps below are the manual equivalent.
+
 ## Steps
 
-1. Create `src/hooks/use-<name>.hook.ts` and `src/hooks/use-<name>.hook.spec.tsx`.
+1. Create `src/hooks/use-<name>.hook.ts`, `src/hooks/use-<name>.hook.spec.tsx`, and
+   `src/hooks/use-<name>.hook.mdx` (Storybook doc: `<Meta title="Hooks/use<Name>" />` + a live
+   demo). Storybook auto-picks the MDX up via the `src/**/*.mdx` glob — no registration needed.
 2. Export a named `use<Name>` function with JSDoc; type inputs and the return value (prefer a
    `readonly` tuple via `as const`, like `useCounter`).
 3. Keep it portable: use browser-safe types — e.g. `ReturnType<typeof setTimeout>`, **not**
