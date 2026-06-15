@@ -1,0 +1,4 @@
+/* layouts are structural — no colors, so no dark-mode variant is needed */
+.root {
+	@apply flex gap-4;
+}

@@ -69,6 +69,7 @@ src/
     atoms/<name>/      Component.tsx + .module.css + .stories.tsx + .spec.tsx + index.ts
     molecules/<name>/  …compose atoms
     organisms/<name>/  …compose molecules + atoms
+    layouts/<name>/    …arrange organisms + content (structure only)
   hooks/              reusable hooks (*.hook.ts + *.hook.spec.tsx + *.hook.mdx)
   __tests__/          shared test utilities (the #testing alias)
   main.ts             public barrel — pure re-exports (no side effects)

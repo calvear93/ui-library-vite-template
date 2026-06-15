@@ -1,0 +1,5 @@
+{
+	"name": "UI: Layout",
+	"allowExistingFolder": true,
+	"variables": ["componentName"]
+}

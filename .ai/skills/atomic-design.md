@@ -10,12 +10,16 @@ src/components/
   atoms/        smallest building blocks — one element, no composition (Button, Input)
   molecules/    a few atoms combined into a unit (Field = Label + Input)
   organisms/    molecules + atoms forming a section (SignUpForm = Field × 2 + Button)
+  layouts/      arrange organisms + content; structure only, no house style (Stack)
 ```
 
 - **Atoms** wrap a single native element. Extend its props, spread `...rest`, keep them dumb.
 - **Molecules** import and compose atoms; they add a small amount of structure/logic
   (e.g. `Field` links a `<label>` to the `Input` atom with `useId`).
 - **Organisms** compose molecules and atoms into a self-contained block.
+- **Layouts** arrange organisms and arbitrary content (the "templates" layer of atomic design):
+  they expose `children`/slots and impose structure — flex/grid/gap — not colors. `Stack` is the
+  example, and layouts ship no dark-mode variant because they carry no house style.
 
 Each component (any layer) lives in its own folder with the same five files and is re-exported
 from `src/main.ts`. Compose **upward** by importing lower layers, never downward.

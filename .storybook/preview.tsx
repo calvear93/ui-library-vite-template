@@ -67,6 +67,7 @@ export default {
 					'Atoms',
 					'Molecules',
 					'Organisms',
+					'Layouts',
 					'Hooks',
 				],
 			},

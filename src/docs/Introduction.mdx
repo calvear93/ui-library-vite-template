@@ -45,6 +45,7 @@ Each component ships its own CSS (injected automatically) — there is no global
 - **Atoms** — the smallest building blocks (`Button`, `Input`).
 - **Molecules** — atoms composed into a unit (`Field`).
 - **Organisms** — molecules + atoms forming a section (`SignUpForm`).
+- **Layouts** — arrange organisms and content; structure only, no house style (`Stack`).
 - **Hooks** — reusable non-visual logic (`useCounter`, `useDebounceState`).
 
 Each component has an autodocs page (props, types, live controls); each hook has a usage page with
@@ -52,7 +53,7 @@ a live demo. Use the sidebar to explore.
 
 ## Make it yours
 
-1. Replace the sample components under `src/components/{atoms,molecules,organisms}/`.
+1. Replace the sample components under `src/components/{atoms,molecules,organisms,layouts}/`.
 2. Style with UnoCSS utilities via `@apply` — keep it simple and easy to restyle.
 3. Rebrand this Storybook in `.storybook/manager.ts` (logo, colors, fonts).
 

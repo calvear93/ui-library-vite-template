@@ -5,8 +5,8 @@ Mirror the existing `atoms`/`molecules`/`organisms` exemplars. Apply the `atomic
 `component-api`, `storybook`, `accessibility`, and `vitest-tdd` skills.
 
 > In VSCode, the Template Tool scaffolds these from `.vscode/__templates__/` (`atom`, `molecule`,
-> `organism`, `hook`) — right-click the target folder → "New From Template". The steps below are
-> the manual equivalent.
+> `organism`, `layout`, `hook`) — right-click the target folder → "New From Template". The steps
+> below are the manual equivalent.
 
 ## Steps
 
@@ -14,6 +14,7 @@ Mirror the existing `atoms`/`molecules`/`organisms` exemplars. Apply the `atomic
     - **atom** — wraps one native element (no other components).
     - **molecule** — composes atoms.
     - **organism** — composes molecules and atoms.
+    - **layout** — arranges organisms/content via `children`/slots (structure only, no house style).
 2. Create `src/components/<layer>/<kebab-name>/` with five files (component in `PascalCase`):
     - `<Name>.tsx`, `<Name>.module.css`, `<Name>.stories.tsx`, `<Name>.spec.tsx`, `index.ts`
 3. Write the component: named export; for atoms extend the native element's props and spread

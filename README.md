@@ -71,6 +71,7 @@ src/components/
   atoms/        Button · Input          — one element each
   molecules/    Field                   — Label + Input
   organisms/    SignUpForm              — Field × 2 + Button
+  layouts/      Stack                   — arrange children along an axis
 ```
 
 Each component lives in its own folder, co-located with its styles, story, and test:
