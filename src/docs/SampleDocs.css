@@ -1,8 +1,0 @@
-#sample-docs {
-	& h1 {
-		padding: 1rem !important;
-		color: white;
-		background-color: gray;
-		border-radius: 1rem;
-	}
-}

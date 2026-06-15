@@ -1,4 +1,5 @@
 import unocss from '@unocss/eslint-config/flat';
+import vitest from '@vitest/eslint-plugin';
 import testingLibraryJestDom from 'eslint-plugin-jest-dom';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -7,9 +8,9 @@ import promise from 'eslint-plugin-promise';
 import react from 'eslint-plugin-react';
 import regexp from 'eslint-plugin-regexp';
 import sonarjs from 'eslint-plugin-sonarjs';
+import storybook from 'eslint-plugin-storybook';
 import testingLibrary from 'eslint-plugin-testing-library';
 import unicorn from 'eslint-plugin-unicorn';
-import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import typescript from 'typescript-eslint';
 
@@ -32,7 +33,7 @@ export default [
 			'**/node_modules/**/*',
 			'.reports/**/*',
 			'.vscode/**/*',
-			'.rollup.cache/**/*',
+			'storybook-static/**/*',
 			'vite.config.ts.*',
 			'vitest.config.ts.*',
 		],
@@ -42,13 +43,11 @@ export default [
 	{
 		files: [SRC_GLOB],
 		languageOptions: {
-			ecmaVersion: 2024,
+			ecmaVersion: 2025,
 			globals: { ...globals.node },
 			sourceType: 'module',
 		},
 		rules: {
-			'no-invalid-regexp': ERROR,
-			'valid-typeof': ERROR,
 			'array-callback-return': ERROR,
 			complexity: [WARN, 15],
 			'constructor-super': ERROR,
@@ -90,6 +89,7 @@ export default [
 			'no-func-assign': ERROR,
 			'no-global-assign': ERROR,
 			'no-import-assign': ERROR,
+			'no-invalid-regexp': ERROR,
 			'no-irregular-whitespace': ERROR,
 			'no-lonely-if': WARN,
 			'no-loss-of-precision': ERROR,
@@ -147,6 +147,7 @@ export default [
 			'require-unicode-regexp': WARN,
 			'require-yield': ERROR,
 			'use-isnan': ERROR,
+			'valid-typeof': ERROR,
 			yoda: WARN,
 			'capitalized-comments': [
 				WARN,
@@ -163,8 +164,8 @@ export default [
 				WARN,
 				'single',
 				{
-					avoidEscape: true,
 					allowTemplateLiterals: false,
+					avoidEscape: true,
 				},
 			],
 		},
@@ -285,11 +286,11 @@ export default [
 			},
 		},
 		rules: {
-			'react/destructuring-assignment': [WARN, 'always'],
+			// 'react/destructuring-assignment': [WARN, 'always'],
 			'react/display-name': OFF,
 			'react/iframe-missing-sandbox': WARN,
 			'react/jsx-boolean-value': WARN,
-			'react/jsx-fragments': [WARN, 'syntax'],
+			// 'react/jsx-fragments': [WARN, 'syntax'],
 			'react/jsx-no-comment-textnodes': WARN,
 			'react/jsx-no-duplicate-props': WARN,
 			'react/jsx-no-useless-fragment': WARN,
@@ -328,9 +329,6 @@ export default [
 		files: [SRC_GLOB],
 		plugins: { sonarjs },
 		rules: {
-			'sonarjs/no-identical-conditions': ERROR,
-			'sonarjs/no-identical-expressions': ERROR,
-			'sonarjs/no-identical-functions': ERROR,
 			'sonarjs/cognitive-complexity': [WARN, 16],
 			'sonarjs/max-switch-cases': [WARN, 12],
 			'sonarjs/no-all-duplicated-branches': ERROR,
@@ -339,6 +337,9 @@ export default [
 			'sonarjs/no-duplicate-string': [WARN, { threshold: 5 }],
 			'sonarjs/no-duplicated-branches': ERROR,
 			'sonarjs/no-element-overwrite': ERROR,
+			'sonarjs/no-identical-conditions': ERROR,
+			'sonarjs/no-identical-expressions': ERROR,
+			'sonarjs/no-identical-functions': ERROR,
 			'sonarjs/no-ignored-return': ERROR,
 			'sonarjs/no-inverted-boolean-check': ERROR,
 			'sonarjs/no-nested-switch': ERROR,
@@ -360,9 +361,8 @@ export default [
 		files: [SRC_GLOB],
 		plugins: { promise },
 		rules: {
-			'promise/avoid-new': OFF,
-			'promise/valid-params': WARN,
 			'promise/always-return': OFF,
+			'promise/avoid-new': OFF,
 			'promise/catch-or-return': ERROR,
 			'promise/no-callback-in-promise': OFF,
 			'promise/no-multiple-resolved': ERROR,
@@ -373,6 +373,7 @@ export default [
 			'promise/no-return-wrap': WARN,
 			'promise/param-names': WARN,
 			'promise/prefer-await-to-then': WARN,
+			'promise/valid-params': WARN,
 		},
 	},
 	// #endregion
@@ -382,9 +383,6 @@ export default [
 		files: [SRC_GLOB],
 		plugins: { unicorn },
 		rules: {
-			'unicorn/no-invalid-fetch-options': ERROR,
-			'unicorn/no-invalid-remove-event-listener': ERROR,
-			'unicorn/text-encoding-identifier-case': WARN,
 			'no-negated-condition': OFF,
 			'no-nested-ternary': OFF,
 			'unicorn/better-regex': WARN,
@@ -399,6 +397,7 @@ export default [
 			'unicorn/no-array-for-each': WARN,
 			'unicorn/no-array-method-this-argument': ERROR,
 			'unicorn/no-array-push-push': ERROR,
+			'unicorn/no-array-reverse': WARN,
 			'unicorn/no-await-expression-member': WARN,
 			'unicorn/no-await-in-promise-methods': ERROR,
 			'unicorn/no-console-spaces': WARN,
@@ -406,6 +405,8 @@ export default [
 			'unicorn/no-empty-file': ERROR,
 			'unicorn/no-hex-escape': WARN,
 			'unicorn/no-instanceof-array': WARN,
+			'unicorn/no-invalid-fetch-options': ERROR,
+			'unicorn/no-invalid-remove-event-listener': ERROR,
 			'unicorn/no-lonely-if': WARN,
 			'unicorn/no-magic-array-flat-depth': WARN,
 			'unicorn/no-negated-condition': ERROR,
@@ -420,6 +421,7 @@ export default [
 			'unicorn/no-unreadable-array-destructuring': ERROR,
 			'unicorn/no-unreadable-iife': ERROR,
 			'unicorn/no-unused-properties': WARN,
+			'unicorn/no-useless-error-capture-stack-trace': ERROR,
 			'unicorn/no-useless-fallback-in-spread': ERROR,
 			'unicorn/no-useless-length-check': WARN,
 			'unicorn/no-useless-spread': WARN,
@@ -435,6 +437,7 @@ export default [
 			'unicorn/prefer-array-index-of': WARN,
 			'unicorn/prefer-array-some': WARN,
 			'unicorn/prefer-blob-reading-methods': WARN,
+			'unicorn/prefer-class-fields': WARN,
 			'unicorn/prefer-code-point': WARN,
 			'unicorn/prefer-date-now': WARN,
 			'unicorn/prefer-default-parameters': WARN,
@@ -473,10 +476,12 @@ export default [
 			'unicorn/prefer-top-level-await': WARN,
 			'unicorn/prefer-type-error': WARN,
 			'unicorn/require-array-join-separator': WARN,
+			'unicorn/require-module-specifiers': ERROR,
 			'unicorn/require-number-to-fixed-digits-argument': ERROR,
 			'unicorn/require-post-message-target-origin': ERROR,
 			'unicorn/string-content': WARN,
 			'unicorn/template-indent': WARN,
+			'unicorn/text-encoding-identifier-case': WARN,
 			'unicorn/throw-new-error': ERROR,
 			'unicorn/filename-case': [
 				ERROR,
@@ -494,7 +499,6 @@ export default [
 		plugins: { perfectionist },
 		rules: {
 			'perfectionist/sort-array-includes': WARN,
-			'perfectionist/sort-enums': [WARN, { sortByValue: true }],
 			'perfectionist/sort-exports': WARN,
 			'perfectionist/sort-heritage-clauses': WARN,
 			'perfectionist/sort-jsx-props': WARN,
@@ -507,6 +511,7 @@ export default [
 				WARN,
 				{
 					partitionByComment: 'SECTION:*',
+					partitionByNewLine: false,
 					groups: [
 						'decorated-method',
 						'method',
@@ -527,26 +532,26 @@ export default [
 					],
 				},
 			],
+			'perfectionist/sort-enums': [
+				WARN,
+				{ sortByValue: 'ifNumericEnum' },
+			],
 			'perfectionist/sort-imports': [
 				WARN,
 				{
-					internalPattern: ['#*/*'],
+					internalPattern: ['#*/*', '#*'],
 					newlinesBetween: 'ignore',
 					type: 'alphabetical',
 					groups: [
-						'tsconfig-path',
-						['builtin-type', 'builtin'],
-						['external-type', 'external'],
-						['internal-type', 'internal'],
-						['parent-type', 'parent'],
-						['sibling-type', 'sibling'],
-						['index-type', 'index'],
-						'type',
+						['type-builtin', 'builtin'],
+						['type-subpath', 'subpath'],
+						['type-external', 'external'],
+						['type-internal', 'internal'],
+						['type-parent', 'parent'],
+						['type-sibling', 'sibling'],
+						['type-index', 'index'],
+						['type-import', 'import'],
 						'style',
-						'side-effect',
-						'side-effect-style',
-						'object',
-						'import',
 						'unknown',
 					],
 				},
@@ -554,7 +559,9 @@ export default [
 			'perfectionist/sort-interfaces': [
 				WARN,
 				{
-					customGroups: { top: 'id' },
+					customGroups: [
+						{ elementNamePattern: '.*([iI]d)$', groupName: 'top' },
+					],
 					groups: [
 						'top',
 						'member',
@@ -566,13 +573,16 @@ export default [
 						'multiline-optional-method',
 						'optional-method',
 						'unknown',
+						'index-signature',
 					],
 				},
 			],
 			'perfectionist/sort-object-types': [
 				WARN,
 				{
-					customGroups: { top: 'id' },
+					customGroups: [
+						{ elementNamePattern: '.*([iI]d)$', groupName: 'top' },
+					],
 					groups: [
 						'top',
 						'member',
@@ -590,9 +600,16 @@ export default [
 			'perfectionist/sort-objects': [
 				WARN,
 				{
-					customGroups: { top: 'id' },
-					ignorePattern: ['features', 'examples', 'manualChunks'],
+					type: 'unsorted',
+					useConfigurationIf: {
+						declarationMatchesPattern: '^(?:examples|features)$',
+					},
+				},
+				{
 					partitionByComment: '#region*',
+					customGroups: [
+						{ elementNamePattern: '.*([iI]d)$', groupName: 'top' },
+					],
 					groups: [
 						'top',
 						'member',
@@ -607,6 +624,7 @@ export default [
 		settings: {
 			perfectionist: {
 				ignoreCase: false,
+				newlinesInside: 'ignore',
 				order: 'asc',
 				partitionByNewLine: true,
 				type: 'natural',
@@ -620,10 +638,9 @@ export default [
 		files: [SRC_GLOB],
 		plugins: { regexp },
 		rules: {
-			'no-invalid-regexp': OFF,
-			'regexp/no-invalid-regexp': ERROR,
 			'no-control-regex': ERROR,
 			'no-empty-character-class': OFF,
+			'no-invalid-regexp': OFF,
 			'no-misleading-character-class': ERROR,
 			'no-regex-spaces': ERROR,
 			'no-useless-backreference': OFF,
@@ -646,6 +663,7 @@ export default [
 			'regexp/no-empty-string-literal': ERROR,
 			'regexp/no-escape-backspace': ERROR,
 			'regexp/no-extra-lookaround-assertions': ERROR,
+			'regexp/no-invalid-regexp': ERROR,
 			'regexp/no-invisible-character': ERROR,
 			'regexp/no-lazy-ends': WARN,
 			'regexp/no-legacy-features': ERROR,
@@ -717,7 +735,6 @@ export default [
 			'testing-library': testingLibrary,
 		},
 		rules: {
-			'testing-library/no-wait-for-side-effects': ERROR,
 			'jest-dom/prefer-checked': WARN,
 			'jest-dom/prefer-empty': WARN,
 			'jest-dom/prefer-enabled-disabled': WARN,
@@ -725,7 +742,7 @@ export default [
 			'jest-dom/prefer-in-document': WARN,
 			'jest-dom/prefer-required': WARN,
 			'jest-dom/prefer-to-have-attribute': WARN,
-			'jest-dom/prefer-to-have-class': WARN,
+			// 'jest-dom/prefer-to-have-class': WARN,
 			'jest-dom/prefer-to-have-style': WARN,
 			'jest-dom/prefer-to-have-text-content': WARN,
 			'jest-dom/prefer-to-have-value': WARN,
@@ -742,6 +759,7 @@ export default [
 			'testing-library/no-render-in-lifecycle': ERROR,
 			'testing-library/no-unnecessary-act': ERROR,
 			'testing-library/no-wait-for-multiple-assertions': ERROR,
+			'testing-library/no-wait-for-side-effects': ERROR,
 			'testing-library/no-wait-for-snapshot': ERROR,
 			'testing-library/prefer-find-by': ERROR,
 			'testing-library/prefer-presence-queries': ERROR,
@@ -792,7 +810,6 @@ export default [
 		files: [TEST_GLOB],
 		plugins: { vitest },
 		rules: {
-			'vitest/valid-title': OFF,
 			'max-classes-per-file': OFF,
 			'react/no-multi-comp': OFF,
 			'testing-library/no-manual-cleanup': OFF,
@@ -835,7 +852,12 @@ export default [
 			'vitest/prefer-to-contain': WARN,
 			'vitest/prefer-to-have-length': WARN,
 			'vitest/prefer-todo': WARN,
+			'vitest/valid-title': OFF,
 		},
 	},
+	// #endregion
+
+	// #region storybook
+	...storybook.configs['flat/recommended'],
 	// #endregion
 ];

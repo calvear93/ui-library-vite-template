@@ -1,5 +1,5 @@
 import { renderHookFactory } from '#testing';
-import { act } from 'react';
+import { act } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { useCounter } from './use-counter.hook.ts';
 

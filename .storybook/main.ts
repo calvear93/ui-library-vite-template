@@ -3,6 +3,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 export default {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+	staticDirs: ['./assets'],
 	core: {
 		builder: '@storybook/builder-vite',
 		disableTelemetry: true,
@@ -17,12 +18,15 @@ export default {
 		check: true,
 		reactDocgen: 'react-docgen-typescript',
 	},
+	// controls, actions, viewport, interactions… are bundled into the core in v9+;
+	// docs (autodocs + MDX) is still an explicit addon
 	addons: [
+		'@storybook/addon-docs',
 		'@storybook/addon-onboarding',
 		'@storybook/addon-links',
-		'@storybook/addon-essentials',
-		'@storybook/addon-interactions',
 		'@storybook/addon-a11y',
 		'@whitespace/storybook-addon-html',
 	],
+	managerHead: (head) =>
+		`${head}<link rel="icon" type="image/svg+xml" href="./favicon.svg" />`,
 } satisfies StorybookConfig;

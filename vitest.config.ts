@@ -1,21 +1,9 @@
-import { checker } from 'vite-plugin-checker';
-import type { UserConfigExport } from 'vitest/config';
+import type { ViteUserConfig } from 'vitest/config';
 
 const TEST_DIR = '.reports';
 
 export default {
 	clearScreen: false,
-	plugins: [
-		checker({
-			terminal: true,
-			typescript: true,
-			eslint: {
-				dev: { logLevel: ['error'] },
-				lintCommand: 'eslint --cache src/**/*.{ts,mts,tsx}',
-				useFlatConfig: true,
-			},
-		}),
-	],
 	test: {
 		environment: 'happy-dom',
 		include: ['src/**/*.{spec,test}.?(m)[jt]s?(x)'],
@@ -35,4 +23,4 @@ export default {
 			'@testing-library/jest-dom/vitest',
 		],
 	},
-} satisfies UserConfigExport;
+} satisfies ViteUserConfig;

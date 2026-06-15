@@ -1,4 +1,5 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
-  - esbuild
+# esbuild and @parcel/watcher ship prebuilt binaries via optional deps, so their
+# postinstall scripts are not required. Skip them silently (no build-approval prompt).
+ignoredBuiltDependencies:
+    - '@parcel/watcher'
+    - esbuild

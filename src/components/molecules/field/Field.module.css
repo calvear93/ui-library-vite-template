@@ -1,0 +1,7 @@
+.field {
+	@apply inline-flex flex-col gap-1;
+}
+
+.label {
+	@apply text-sm font-medium text-gray-700;
+}

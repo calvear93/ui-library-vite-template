@@ -1,0 +1,11 @@
+.form {
+	@apply inline-flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm;
+}
+
+.title {
+	@apply m-0 flex items-center gap-2 text-lg font-bold text-gray-900;
+}
+
+.icon {
+	@apply i-mdi-account-plus text-blue-500;
+}

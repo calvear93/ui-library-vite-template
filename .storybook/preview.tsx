@@ -1,6 +1,5 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 import { PreviewLayout } from './utils/PreviewLayout.tsx';
-import '../src/main.css';
 import 'virtual:uno.css';
 
 export default {
@@ -12,22 +11,6 @@ export default {
 		),
 	],
 	parameters: {
-		backgrounds: {
-			values: [
-				{
-					name: 'light',
-					value: '#fff',
-				},
-				{
-					name: 'dark',
-					value: '#222425',
-				},
-				{
-					name: 'black',
-					value: '#000',
-				},
-			],
-		},
 		controls: {
 			matchers: {
 				color: /(?:background|color)$/iu,

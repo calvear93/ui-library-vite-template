@@ -1,5 +1,5 @@
-import { act } from '@testing-library/react';
 import { renderHookFactory, useFakeTimers } from '#testing';
+import { act } from '@testing-library/react';
 import { describe, expect, test, vi } from 'vitest';
 import { useDebounceState } from './use-debounce.hook.ts';
 
