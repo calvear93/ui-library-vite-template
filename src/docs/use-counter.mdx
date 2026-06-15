@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Button } from '../components/atoms/button/index.ts';
+import { useCounter } from '../hooks/use-counter.hook.ts';
+
+<Meta title="Hooks/useCounter" />
+
+# useCounter
+
+Counter state with an `increment` action.
+
+```ts
+const [count, increment] = useCounter(initialValue);
+```
+
+- **`initialValue`** (`number`, default `0`) — the starting value.
+- **Returns** a readonly `[count, increment]` tuple.
+
+## Live demo
+
+export const CounterDemo = () => {
+	const [count, increment] = useCounter();
+	return <Button text={`Count: ${count}`} onClick={increment} />;
+};
+
+<CounterDemo />

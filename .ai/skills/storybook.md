@@ -35,6 +35,31 @@ export const Disabled: Story = { args: { disabled: true } };
 - `tags: ['autodocs']` generates the docs page from props (JSDoc → descriptions, types → controls).
 - Add at least one **play function** that drives the component and asserts with `storybook/test`.
 
+## Documenting hooks & non-components (MDX)
+
+Hooks aren't components, so autodocs won't pick them up. Document them with an **MDX page** — the
+stories glob already includes `src/**/*.mdx`. Give it a `title` to place it in the sidebar, describe
+the signature/params/returns, and render a small **live demo** that uses the hook:
+
+```mdx
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Button } from '../components/atoms/button/index.ts';
+import { useCounter } from './use-counter.hook.ts';
+
+<Meta title='Hooks/useCounter' />
+
+# useCounter
+
+export const Demo = () => {
+	const [count, increment] = useCounter();
+	return <Button text={`Count: ${count}`} onClick={increment} />;
+};
+
+<Demo />
+```
+
+See `src/hooks/*.mdx` for the live examples. The same pattern documents any utility or guideline page.
+
 ## Config & branding
 
 - `.storybook/main.ts` — `addons` (docs, onboarding, links, a11y, html), `staticDirs`, framework.
