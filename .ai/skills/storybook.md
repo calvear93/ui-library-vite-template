@@ -69,3 +69,26 @@ See `src/docs/*.mdx` for the live examples. The same pattern documents any utili
 - `.storybook/preview.tsx` — global decorator (`PreviewLayout`) and `virtual:uno.css` for utilities.
 
 The custom favicon/logo (nested-layers mark) live in `.storybook/assets/`.
+
+## Dark mode
+
+A real light/dark toggle (toolbar) is wired with `storybook-dark-mode`:
+
+- **Themes** live in `.storybook/theme.ts` (`light` + `dark`, branded).
+- **`preview.tsx`** registers a `darkMode` parameter (toggles the chrome + docs) plus a
+  `useDarkMode()` decorator that applies a `.dark` class to the preview canvas.
+- **Components** carry their dark styles as `:global(.dark) .x { @apply … }` blocks, so they react
+  to that `.dark` ancestor. Those styles compile into each component's CSS and ship to consumers,
+  so a consumer enables dark mode by adding `.dark` to a root element.
+
+Add dark styling to a new component the same way:
+
+```css
+.button {
+	@apply bg-blue-500 text-white;
+}
+
+:global(.dark) .button {
+	@apply bg-blue-600;
+}
+```

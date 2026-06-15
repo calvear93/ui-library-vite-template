@@ -1,16 +1,28 @@
 import type { Preview } from '@storybook/react-vite';
+import { type PropsWithChildren } from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
 import { dark, light } from './theme.ts';
 import { PreviewLayout } from './utils/PreviewLayout.tsx';
 import 'virtual:uno.css';
+
+// syncs the preview (canvas + components) with the dark-mode toolbar toggle by
+// applying a `.dark` class that the component CSS reacts to.
+const ThemeWrapper = ({ children }: PropsWithChildren) => {
+	const isDark = useDarkMode();
+
+	return <div className={isDark ? 'dark' : ''}>{children}</div>;
+};
 
 export default {
 	// every component story gets an autodocs page by default
 	tags: ['autodocs'],
 	decorators: [
 		(Story) => (
-			<PreviewLayout>
-				<Story />
-			</PreviewLayout>
+			<ThemeWrapper>
+				<PreviewLayout>
+					<Story />
+				</PreviewLayout>
+			</ThemeWrapper>
 		),
 	],
 	parameters: {

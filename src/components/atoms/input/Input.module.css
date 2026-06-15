@@ -15,3 +15,16 @@
 .input::-ms-clear {
 	display: none;
 }
+
+/* dark mode — activates under a `.dark` ancestor (class strategy) */
+:global(.dark) .input {
+	@apply border-gray-600 bg-gray-800 text-gray-100;
+}
+
+:global(.dark) .input:focus {
+	@apply border-blue-400;
+}
+
+:global(.dark) .input::placeholder {
+	@apply text-gray-500;
+}
