@@ -30,7 +30,6 @@
 	"explorer.fileNesting.patterns": {
 		"*.cts": "${capture}.cts.*",
 		"*.json": "${capture}.json, ${capture}.*.json",
-		"*.mdx": "${capture}.*",
 		"*.mts": "${capture}.mts.*",
 		"*.ts": "${capture}.*",
 		"*.tsx": "${capture}.*",

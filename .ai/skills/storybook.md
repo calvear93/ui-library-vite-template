@@ -44,7 +44,7 @@ the signature/params/returns, and render a small **live demo** that uses the hoo
 ```mdx
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Button } from '../components/atoms/button/index.ts';
-import { useCounter } from '../hooks/use-counter.hook.ts';
+import { useCounter } from './use-counter.hook.ts';
 
 <Meta title='Hooks/useCounter' />
 
@@ -58,7 +58,8 @@ export const Demo = () => {
 <Demo />
 ```
 
-See `src/docs/*.mdx` for the live examples. The same pattern documents any utility or guideline page.
+Each hook's MDX lives next to it in `src/hooks/` (e.g. `use-counter.hook.mdx` beside `use-counter.hook.ts`),
+so it nests under the hook in the explorer. Standalone pages like the intro live in `src/docs/`.
 
 ## Config & branding
 
