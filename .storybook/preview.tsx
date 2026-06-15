@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
+import { dark, light } from './theme.ts';
 import { PreviewLayout } from './utils/PreviewLayout.tsx';
 import 'virtual:uno.css';
 
@@ -15,11 +16,18 @@ export default {
 	parameters: {
 		controls: {
 			expanded: true,
+			sort: 'requiredFirst',
 			matchers: {
 				color: /(?:background|color)$/iu,
 				date: /date$/iu,
 			},
-			sort: 'requiredFirst',
+		},
+		// toolbar toggle (storybook-dark-mode) — switches chrome + canvas + docs
+		darkMode: {
+			current: 'light',
+			dark,
+			light,
+			stylePreview: true,
 		},
 		docs: {
 			toc: true,

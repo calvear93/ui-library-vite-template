@@ -26,6 +26,7 @@ export default {
 		'@storybook/addon-links',
 		'@storybook/addon-a11y',
 		'@whitespace/storybook-addon-html',
+		'storybook-dark-mode',
 	],
 	managerHead: (head) =>
 		`${head}
