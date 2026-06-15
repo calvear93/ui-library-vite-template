@@ -11,7 +11,10 @@ The library is published **from `dist/`**, which carries its own generated `pack
     - `dist/package.json` with the `exports` map, `main`/`module`/`types`, `peerDependencies`
       (`react`/`react-dom: >=18`), `sideEffects: ["**/*.css"]`, and `dist/README.md` + `LICENSE.md`.
 3. Inspect before shipping: `cd dist && npm pack --dry-run` (check the file list and `exports`).
-4. Publish: `cd dist && npm publish` (add `--access public` for a scoped public package).
+4. Publish with the bundled scripts — each runs `typecheck → lint → test:cov → build`, then
+   publishes `dist/` with `--access public --no-git-checks`:
+    - `pnpm pub` — stable release (`latest`).
+    - `pnpm pub:alpha` — prerelease under the `alpha` tag.
 
 ## Checklist
 

@@ -1,5 +1,5 @@
 .button {
-	@apply cursor-pointer select-none rounded-lg border-none bg-blue-500 px-6 py-3 text-sm font-bold text-white shadow-md transition-colors;
+	@apply box-border cursor-pointer select-none rounded-lg border-none bg-blue-500 px-6 py-3 text-sm font-bold text-white shadow-md transition-colors;
 
 	&:hover {
 		@apply bg-blue-600;

@@ -20,12 +20,16 @@
 		"dev": "storybook dev -p 5001",
 		"build": "vite build",
 		"build:storybook": "storybook build",
-		"test": "vitest --coverage",
+		"test": "vitest",
+		"test:cov": "vitest run --coverage",
 		"test:mutation": "stryker run",
+		"typecheck": "tsc --noEmit",
 		"lint": "eslint --cache --cache-location node_modules/.cache/eslint/",
 		"stylelint": "stylelint --cache src/**/*.css --cache-location node_modules/.cache/stylelint/",
 		"format": "prettier --cache --write **/*.{ts,mts,tsx,css,json,html,md,yml,yaml,webmanifest}",
-		"clean": "pnpx del-cli dist .reports storybook-static **/*.tsbuildinfo"
+		"clean": "pnpx del-cli dist .reports storybook-static **/*.tsbuildinfo",
+		"pub": "pnpm typecheck && pnpm lint && pnpm test:cov && pnpm build && pnpm publish dist --access public --no-git-checks",
+		"pub:alpha": "pnpm typecheck && pnpm lint && pnpm test:cov && pnpm build && pnpm publish dist --tag alpha --access public --no-git-checks"
 	},
 	"imports": {
 		"#testing": "./src/__tests__/index.ts"

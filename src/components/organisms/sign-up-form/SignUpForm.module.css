@@ -1,5 +1,5 @@
 .form {
-	@apply inline-flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-colors;
+	@apply box-border inline-flex flex-col gap-4 rounded-xl border border-solid border-gray-200 bg-white p-6 shadow-sm transition-colors;
 }
 
 .title {

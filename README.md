@@ -56,8 +56,9 @@ export const App = () => (
 );
 ```
 
-Each component injects its own CSS automatically — **nothing else to import**. Import a single
-component by subpath for the smallest footprint:
+Each component injects its own CSS automatically — **nothing else to import** (components are fully
+self-contained; no global reset/preflight required). Import a single component by subpath for the
+smallest footprint:
 
 ```tsx
 import { Button } from '<lib-name>/Button';
@@ -106,20 +107,25 @@ exports per component — no global stylesheet to ship. Icons work the same way
 | `pnpm dev`                           | Storybook dev server (port 5001) |
 | `pnpm build`                         | Bundle the library to `dist/`    |
 | `pnpm build:storybook`               | Static Storybook build           |
-| `pnpm test`                          | Vitest + coverage                |
+| `pnpm test` · `test:cov`             | Vitest (watch) · run + coverage  |
 | `pnpm test:mutation`                 | Stryker mutation tests           |
+| `pnpm typecheck`                     | Type-check (`tsc --noEmit`)      |
 | `pnpm lint` · `stylelint` · `format` | ESLint · Stylelint · Prettier    |
+| `pnpm pub` · `pub:alpha`             | Publish to npm (stable · alpha)  |
 | `pnpm clean`                         | Remove build artifacts           |
 
 ## 📤 Publishing
 
-`pnpm build` emits a self-contained package into `dist/` — its own `package.json` with the
-`exports` map, `peerDependencies`, and `sideEffects`. Publish from there:
+The build emits a self-contained package into `dist/` — its own `package.json` with the `exports`
+map, `peerDependencies`, and `sideEffects`. Bump `version`, then publish with the bundled scripts
+(each runs typecheck → lint → tests + coverage → build, then publishes from `dist/`):
 
 ```bash
-pnpm build
-cd dist && npm publish        # npm pack --dry-run to inspect first
+pnpm pub          # stable release (latest)
+pnpm pub:alpha    # prerelease under the alpha tag
 ```
+
+Both pass `--access public --no-git-checks`. Inspect first with `cd dist && npm pack --dry-run`.
 
 ## 🤖 Conventions & AI agents
 
