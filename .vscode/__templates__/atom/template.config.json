@@ -1,0 +1,5 @@
+{
+	"name": "UI: Atom",
+	"allowExistingFolder": true,
+	"variables": ["componentName"]
+}
