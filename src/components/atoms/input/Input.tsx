@@ -4,6 +4,11 @@ import styles from './Input.module.css';
 export type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
 /** Input atom. */
-export const Input = (props: InputProps) => {
-	return <input className={styles.input} {...props} />;
+export const Input = ({ className, ...props }: InputProps) => {
+	return (
+		<input
+			className={[styles.input, className].filter(Boolean).join(' ')}
+			{...props}
+		/>
+	);
 };

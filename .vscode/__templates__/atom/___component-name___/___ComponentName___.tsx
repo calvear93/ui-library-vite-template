@@ -8,10 +8,14 @@ export interface ___ComponentName___Props extends HTMLAttributes<HTMLSpanElement
 /** ___ComponentName___ atom. */
 export const ___ComponentName___ = ({
 	children,
+	className,
 	...props
 }: ___ComponentName___Props) => {
 	return (
-		<span className={styles.root} {...props}>
+		<span
+			className={[styles.root, className].filter(Boolean).join(' ')}
+			{...props}
+		>
 			{children}
 		</span>
 	);

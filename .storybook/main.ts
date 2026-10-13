@@ -15,7 +15,6 @@ export default {
 		},
 	},
 	typescript: {
-		check: true,
 		reactDocgen: 'react-docgen-typescript',
 	},
 	// controls, actions, viewport, interactions… are bundled into the core in v9+;

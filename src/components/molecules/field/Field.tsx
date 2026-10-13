@@ -3,6 +3,7 @@ import { Input, type InputProps } from '../../atoms/input/index.ts';
 import styles from './Field.module.css';
 
 export interface FieldProps extends InputProps {
+	/** Visible label text, bound to the input via `htmlFor`. */
 	label: string;
 }
 

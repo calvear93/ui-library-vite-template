@@ -12,6 +12,7 @@ export interface StackProps extends HTMLAttributes<HTMLDivElement> {
 /** Stack layout — arranges its children along one axis with a uniform gap. */
 export const Stack = ({
 	children,
+	className,
 	direction = 'column',
 	gap = 1,
 	style,
@@ -19,7 +20,7 @@ export const Stack = ({
 }: StackProps) => {
 	return (
 		<div
-			className={styles.stack}
+			className={[styles.stack, className].filter(Boolean).join(' ')}
 			style={{ flexDirection: direction, gap: `${gap}rem`, ...style }}
 			{...props}
 		>

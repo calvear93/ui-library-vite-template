@@ -22,4 +22,13 @@ describe('Button', () => {
 
 		expect(onClick).toHaveBeenCalledOnce();
 	});
+
+	test('merges a consumer className with its own styles', () => {
+		render(<Button className='custom' text='Merge' />);
+
+		const button = screen.getByRole('button', { name: 'Merge' });
+
+		expect(button).toHaveClass('custom');
+		expect(button.classList.length).toBeGreaterThan(1);
+	});
 });

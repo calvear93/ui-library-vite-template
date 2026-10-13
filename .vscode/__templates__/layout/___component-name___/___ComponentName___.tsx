@@ -10,13 +10,14 @@ export interface ___ComponentName___Props extends HTMLAttributes<HTMLDivElement>
 /** ___ComponentName___ layout — arranges its children along one axis. */
 export const ___ComponentName___ = ({
 	children,
+	className,
 	direction = 'column',
 	style,
 	...props
 }: ___ComponentName___Props) => {
 	return (
 		<div
-			className={styles.root}
+			className={[styles.root, className].filter(Boolean).join(' ')}
 			style={{ flexDirection: direction, ...style }}
 			{...props}
 		>

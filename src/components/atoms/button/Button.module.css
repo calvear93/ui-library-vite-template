@@ -1,8 +1,16 @@
 .button {
 	@apply box-border cursor-pointer select-none rounded-lg border-none bg-blue-500 px-6 py-3 text-sm font-bold text-white shadow-md transition-colors;
 
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+
 	&:hover {
 		@apply bg-blue-600;
+	}
+
+	&:focus-visible {
+		@apply outline-2 outline-offset-2 outline-blue-500 outline-solid;
 	}
 
 	&:disabled {
