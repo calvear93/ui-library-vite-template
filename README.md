@@ -25,8 +25,8 @@ publish it to npm. Every component is its own ES entry with its own CSS and type
 - ⚡ **Vite 8 library mode** (Rolldown) — one ESM entry per component, tree-shakeable.
 - 🎨 **UnoCSS** — style with utilities via `@apply`; they compile into each component's own CSS.
 - 📦 **Per-component CSS + `.d.ts`** — auto-injected styles, generated types, clean `exports` map.
-- 📖 **Storybook 10** — autodocs, a11y checks, and interaction tests for every component.
-- ✅ **Tested** — Vitest + Testing Library, with Stryker mutation testing.
+- 📖 **Storybook 10** — autodocs, a11y checks, and light/dark previews for every component.
+- ✅ **Tested** — Vitest + Testing Library, with coverage.
 - 🤝 **React 18 & 19** — shipped as peer dependencies; React is never bundled.
 
 ## 🚀 Quick start
@@ -85,7 +85,8 @@ atoms/button/
   index.ts
 ```
 
-Scaffold new ones with the [`.ai/prompts/create-component.md`](.ai/prompts/create-component.md) playbook.
+Scaffold new ones from [`.vscode/__templates__/`](.vscode/__templates__/) (atom, molecule, organism,
+layout, hook).
 
 ## 🎨 Styling
 
@@ -103,17 +104,8 @@ exports per component — no global stylesheet to ship. Icons work the same way
 
 ## 🛠️ Scripts
 
-| Command                              | Action                           |
-| ------------------------------------ | -------------------------------- |
-| `pnpm dev`                           | Storybook dev server (port 5001) |
-| `pnpm build`                         | Bundle the library to `dist/`    |
-| `pnpm build:storybook`               | Static Storybook build           |
-| `pnpm test` · `test:cov`             | Vitest (watch) · run + coverage  |
-| `pnpm test:mutation`                 | Stryker mutation tests           |
-| `pnpm typecheck`                     | Type-check (`tsc --noEmit`)      |
-| `pnpm lint` · `stylelint` · `format` | ESLint · Stylelint · Prettier    |
-| `pnpm pub` · `pub:alpha`             | Publish to npm (stable · alpha)  |
-| `pnpm clean`                         | Remove build artifacts           |
+Day-to-day commands and the quality gate live in [AGENTS.md → Commands](AGENTS.md#commands);
+`package.json` has the full list.
 
 ## 📤 Publishing
 
@@ -130,7 +122,7 @@ Both pass `--access public --no-git-checks`. Inspect first with `cd dist && npm 
 
 ## 🤖 Conventions & AI agents
 
-Project conventions live in [AGENTS.md](AGENTS.md), with playbooks under [`.ai/`](.ai/README.md).
+Project conventions live in [AGENTS.md](AGENTS.md), with skills under [`.ai/`](.ai/README.md).
 `CLAUDE.md` and `GEMINI.md` point to the same source.
 
 <div align="center"><sub>MIT © UI Kit template</sub></div>

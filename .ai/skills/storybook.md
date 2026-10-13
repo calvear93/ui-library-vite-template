@@ -1,7 +1,7 @@
-# Storybook
+# Skill: Storybook
 
-Storybook 10 (`@storybook/react-vite`) is the dev environment and the docs site. Every component
-ships a story.
+Storybook 10 (`@storybook/react-vite`) is the dev server and the docs site. Reference stories sit
+next to each component (`*.stories.tsx`); the scaffolds already follow this file.
 
 ## Imports (Storybook 10)
 
@@ -9,18 +9,13 @@ ships a story.
 - Test utils: `import { expect, userEvent, within } from 'storybook/test';`
 - MDX blocks: `import { Meta } from '@storybook/addon-docs/blocks';`
 
-(The renderer-based `@storybook/react` and the old `@storybook/test`/`@storybook/blocks` paths
-are gone — use the ones above.)
+`@storybook/react`, `@storybook/test` and `@storybook/blocks` are the old paths; don't use them.
 
-## CSF3 pattern
+## Stories (CSF3)
 
 ```tsx
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from './Button.tsx';
-
 const meta = {
 	component: Button,
-	tags: ['autodocs'],
 	args: { text: 'Click me' },
 } satisfies Meta<typeof Button>;
 
@@ -31,65 +26,22 @@ export const Default: Story = {};
 export const Disabled: Story = { args: { disabled: true } };
 ```
 
-- Use `satisfies Meta<typeof X>` for inference; derive `StoryObj<typeof meta>`.
-- `tags: ['autodocs']` generates the docs page from props (JSDoc → descriptions, types → controls).
-- Add at least one **play function** that drives the component and asserts with `storybook/test`.
+- Autodocs is on globally (`.storybook/preview.tsx`), so stories don't set `tags`. JSDoc on props
+  becomes the docs descriptions.
+- Add a `play` function when the component has behavior worth driving (a submit, a toggle). Assert
+  with `storybook/test`.
 
-## Documenting hooks & non-components (MDX)
+## MDX pages
 
-Hooks aren't components, so autodocs won't pick them up. Document them with an **MDX page** — the
-stories glob already includes `src/**/*.mdx`. Give it a `title` to place it in the sidebar, describe
-the signature/params/returns, and render a small **live demo** that uses the hook:
+- Hooks aren't components, so document each one in `use-<name>.hook.mdx` beside it: a
+  `<Meta title='Hooks/<name>' />`, the signature, and a small live demo that uses the hook.
+- Standalone pages (like the intro) go in `src/docs/`. The stories glob includes `src/**/*.mdx`.
 
-```mdx
-import { Meta } from '@storybook/addon-docs/blocks';
-import { Button } from '../components/atoms/button/index.ts';
-import { useCounter } from './use-counter.hook.ts';
+## Config
 
-<Meta title='Hooks/useCounter' />
-
-# useCounter
-
-export const Demo = () => {
-	const [count, increment] = useCounter();
-	return <Button text={`Count: ${count}`} onClick={increment} />;
-};
-
-<Demo />
-```
-
-Each hook's MDX lives next to it in `src/hooks/` (e.g. `use-counter.hook.mdx` beside `use-counter.hook.ts`),
-so it nests under the hook in the explorer. Standalone pages like the intro live in `src/docs/`.
-
-## Config & branding
-
-- `.storybook/main.ts` — `addons` (docs, onboarding, links, a11y, html), `staticDirs`, framework.
-  Remember: in v10, `@storybook/addon-docs` is explicit (autodocs + MDX); controls/actions/viewport
-  are in the core.
-- `.storybook/manager.ts` — branding via `storybook/theming/create` (logo at `.storybook/assets/logo.svg`).
-- `.storybook/preview.tsx` — global decorator (`PreviewLayout`) and `virtual:uno.css` for utilities.
-
-The custom favicon/logo (nested-layers mark) live in `.storybook/assets/`.
-
-## Dark mode
-
-A real light/dark toggle (toolbar) is wired with `storybook-dark-mode`:
-
-- **Themes** live in `.storybook/theme.ts` (`light` + `dark`, branded).
-- **`preview.tsx`** registers a `darkMode` parameter (toggles the chrome + docs) plus a
-  `useDarkMode()` decorator that applies a `.dark` class to the preview canvas.
-- **Components** carry their dark styles as `:global(.dark) .x { @apply … }` blocks, so they react
-  to that `.dark` ancestor. Those styles compile into each component's CSS and ship to consumers,
-  so a consumer enables dark mode by adding `.dark` to a root element.
-
-Add dark styling to a new component the same way:
-
-```css
-.button {
-	@apply bg-blue-500 text-white;
-}
-
-:global(.dark) .button {
-	@apply bg-blue-600;
-}
-```
+- `.storybook/main.ts`: addons (docs, a11y, …), `staticDirs`, framework. Controls, actions and
+  viewport are in the core.
+- `.storybook/preview.tsx`: the `PreviewLayout` decorator, `virtual:uno.css`, and dark mode
+  (`storybook-dark-mode` toggles a `.dark` class on the canvas).
+- `.storybook/manager.ts` + `theme.ts`: branding (light and dark themes, logo in
+  `.storybook/assets/`).
