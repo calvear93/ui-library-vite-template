@@ -7,8 +7,10 @@ import { type PluginOption, type UserConfigExport } from 'vite';
 import { checker } from 'vite-plugin-checker';
 import dts from 'vite-plugin-dts';
 import { libInjectCss as injectCss } from 'vite-plugin-lib-inject-css';
-import packageJson from './package.json';
-import { compilerOptions } from './tsconfig.json';
+import packageJson from './package.json' with { type: 'json' };
+import tsconfigJson from './tsconfig.json' with { type: 'json' };
+
+const { compilerOptions } = tsconfigJson;
 
 // react/react-dom live in devDependencies (peer for consumers); a runtime
 // `dependencies` block is optional, so it is typed in defensively here.

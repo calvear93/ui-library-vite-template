@@ -1,5 +1,4 @@
-# esbuild and @parcel/watcher ship prebuilt binaries via optional deps, so their
-# postinstall scripts are not required. Skip them silently (no build-approval prompt).
-ignoredBuiltDependencies:
-    - '@parcel/watcher'
-    - esbuild
+savePrefix: ''
+allowBuilds:
+    '@parcel/watcher': false
+    esbuild: false
