@@ -2,3 +2,5 @@ savePrefix: ''
 allowBuilds:
     '@parcel/watcher': false
     esbuild: false
+minimumReleaseAgeExclude:
+    - '@vitest/eslint-plugin@1.6.28'
