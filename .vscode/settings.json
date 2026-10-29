@@ -49,6 +49,7 @@
 		"tsconfig.*.json": "jsonc",
 		"tsconfig.json": "jsonc"
 	},
+	"files.eol": "\n",
 	"files.exclude": {
 		"**/*.log": true,
 		"**/*.tsbuildinfo": true,
