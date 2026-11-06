@@ -33,11 +33,56 @@ npm-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# merge / patch leftovers (mergetool backups, `git apply --reject`)
+*.orig
+*.rej
+
 # diagnostic reports
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # OS & editors
 .DS_Store
 Thumbs.db
+desktop.ini
+# the `nul` file a `2>nul` redirect leaves behind when a POSIX shell runs it (git can't index
+# it, so `git add -A` fails)
+nul
 .idea
 *.swp
+
+# AI assistants — local / temporary artifacts only.
+# The repo intentionally versions its shared AI files (do NOT ignore these):
+#   .ai/, CLAUDE.md, GEMINI.md, AGENTS.md, .github/instructions/
+
+# Claude Code (local settings + local memory + runtime locks; shared CLAUDE.md/.claude config stay tracked)
+.claude/settings.local.json
+.claude/*.local.json
+CLAUDE.local.md
+.claude/scheduled_tasks.lock
+
+# Claude Code worktrees (`claude --worktree`, isolated subagents): whole checkouts of the repo
+/.claude/worktrees/
+
+# Gemini CLI (local state; shared context lives in the tracked GEMINI.md)
+.gemini/
+GEMINI.local.md
+
+# GitHub Copilot (local CLI state)
+.copilot/
+
+# OpenAI Codex CLI
+.codex/
+
+# Cursor / Windsurf / Codeium
+.cursor/
+.windsurf/
+.codeium/
+
+# Continue
+.continue/
+
+# Aider (chat history, input history, tags cache)
+.aider*
+
+# plans handed between AI sessions, written at the repo root (PLAN-<date>-<slug>.md)
+/PLAN-*
